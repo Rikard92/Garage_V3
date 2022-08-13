@@ -288,21 +288,21 @@ namespace GarageV3.Controllers
             //var receipt = _mapper.Map<ReceitViewModel>(model);
 
 
-            ReceitViewModel Receit = new()
+            ReceitViewModel receit = new()
             {
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                Reg = model!.RegNr!,
-                Arrival = model.ArrivalTime,
-                CheckOut = model.CheckOutTime,
-                ParkTime = model.Ptime,
+                RegNr = model!.RegNr!,
+                ArrivalTime = model.ArrivalTime,
+                CheckOutTime = model.CheckOutTime,
+                ParkTime = model.ParkTime,
                 ParkingPrice = $"{model.Price} {_currency}",
                 MinimumFee = $"{_ticketBasePrice} {_currency}",
                 FeePerHour = $"{_ticketBasePrice} {_currency}"
 
             };
 
-            return await Task.FromResult(View(receipt));
+            return await Task.FromResult(View(receit));
         }
 
 
@@ -382,9 +382,9 @@ namespace GarageV3.Controllers
                 voucher.ArrivalTime = _vehicle.ArrivalTime;
                 voucher.CheckOutTime = DateTime.Now;
                 voucher.RegNr = _vehicle.RegNr;
-                voucher.Ptime = dateTimeNow - _vehicle.ArrivalTime;
+                voucher.ParkTime = dateTimeNow - _vehicle.ArrivalTime;
 
-                tempPrice = (float)voucher.Ptime.TotalHours * _ticketBasePrice;
+                tempPrice = (float)voucher.ParkTime.TotalHours * _ticketBasePrice;
                 tempPrice = (float)Math.Round(tempPrice, 2);
 
                 if (tempPrice < _ticketBasePrice) tempPrice = _ticketBasePrice;

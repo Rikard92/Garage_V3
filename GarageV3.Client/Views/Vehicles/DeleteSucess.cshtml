@@ -51,10 +51,10 @@
 
         <dt class="col-sm-4">
 
-            @Html.DisplayNameFor(model => model.Ptime)
+            @Html.DisplayNameFor(model => model.ParkTime)
         </dt>
         <dd class="col-sm-8">
-            @Html.DisplayFor(model => model.Ptime) (dygn.tim:min)
+            @Html.DisplayFor(model => model.ParkTime) (dygn.tim:min)
         </dd>
 
         <dt class="col-sm-4">
@@ -78,7 +78,7 @@
             <input hidden asp-for="RegNr" />
             <input hidden type="datetime" asp-for="ArrivalTime" />
             <input hidden type="datetime" asp-for="CheckOutTime" />
-            <input hidden asp-for="Ptime" />
+            <input hidden asp-for="ParkTime" />
             <input hidden asp-for="Price" />
 
             <button type="submit" class="btn btn-primary">Skriv ut kvitto</button>

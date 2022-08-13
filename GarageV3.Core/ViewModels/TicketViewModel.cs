@@ -25,7 +25,7 @@
 
         [DisplayFormat(DataFormatString = @"{0:dd\:hh\:mm}", ApplyFormatInEditMode = true)]
         [Display(Name = "Parkerad tid")]
-        public TimeSpan Ptime { get; set; }
+        public TimeSpan ParkTime { get; set; }
 
         [Display(Name = "Parkeringsavgift")]
         public string? Price { get; set; }
