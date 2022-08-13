@@ -14,6 +14,9 @@ namespace MKDevx.Data.Repositories
 
         public override void Add(Vehicle entity)
         {
+            AppDbContext.Entry(entity.Owner).State = EntityState.Unchanged;
+            AppDbContext.Entry(entity.VehicleType).State = EntityState.Unchanged;
+
             base.Add(entity);
         }
 

@@ -91,6 +91,20 @@ namespace GarageV3.Controllers
                 return View();
             }
 
+            //id FirstName	LastName	PersonNumber
+            // 1 Katarin Pettersson  5205075012
+
+            var owner = new Owner
+            {
+                Id = 1,
+                FirstName = "Pelle",
+                LastName = "Jonsson",
+                PersonNumber = 199005075012
+            };
+
+
+            var vehicleType = await _unitOfWork.VehicleTypeRepo.GetAsync(parkVM.VehicleType.Id.ToString());
+
             parkVM.ArrivalTime = DateTime.Now;
             parkVM.RegNr = _regNr.ToUpper();
             parkVM.Color = parkVM.Color.TranslateColorLang();
@@ -102,8 +116,8 @@ namespace GarageV3.Controllers
                 ArrivalTime = DateTimeHelper.GetCurrentDate(),
                 RegNr = _regNr,
                 Model = parkVM.Brand,
-                Owner = parkVM.Owner,
-                VehicleType = parkVM.VehicleType,
+                Owner = owner,
+                VehicleType = vehicleType,
                 Wheels = parkVM.Wheels,
 
             };
@@ -113,10 +127,6 @@ namespace GarageV3.Controllers
 
             return RedirectToAction(nameof(Details), this.ControllerContext.RouteData.Values["controller"].ToString(), new { id = vehicle.RegNr });
         }
-
-
-
-
 
         // POST: Vehicles/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
