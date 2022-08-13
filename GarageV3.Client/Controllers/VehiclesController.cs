@@ -91,9 +91,8 @@ namespace GarageV3.Controllers
                 return View();
             }
 
-            //id FirstName	LastName	PersonNumber
-            // 1 Katarin Pettersson  5205075012
 
+            //Todo: Replace this with a _unitOfWork.OwnerRepo.GetAsync()
             var owner = new Owner
             {
                 Id = 1,
@@ -115,7 +114,7 @@ namespace GarageV3.Controllers
                 Brand = parkVM.Brand,
                 ArrivalTime = DateTimeHelper.GetCurrentDate(),
                 RegNr = _regNr,
-                Model = parkVM.Brand,
+                Model = parkVM.Model,
                 Owner = owner,
                 VehicleType = vehicleType,
                 Wheels = parkVM.Wheels,

@@ -14,6 +14,11 @@ namespace GarageV3.AutoMapper
         {
             CreateMap<Vehicle, VehicleViewModel>().ForMember(
                 dest => dest.VType, from => from.MapFrom(s => s.VehicleType.VType));
+
+
+            CreateMap<Vehicle, ParkCarViewModel>();
+
+
         }
     }
 }
