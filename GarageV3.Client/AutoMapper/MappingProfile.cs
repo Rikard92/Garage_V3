@@ -17,6 +17,7 @@ namespace GarageV3.AutoMapper
 
 
             CreateMap<Vehicle, ParkCarViewModel>();
+            CreateMap<ParkCarViewModel, Vehicle>().ReverseMap();
 
 
         }

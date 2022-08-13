@@ -105,21 +105,14 @@ namespace GarageV3.Controllers
             var vehicleType = await _unitOfWork.VehicleTypeRepo.GetAsync(parkVM.VehicleType.Id.ToString());
 
             parkVM.ArrivalTime = DateTime.Now;
-            parkVM.RegNr = _regNr.ToUpper();
+            parkVM.RegNr = _regNr.ToUpper().RemoveWhiteSpace();
             parkVM.Color = parkVM.Color.TranslateColorLang();
 
-            var vehicle = new Vehicle
-            {
-                Color = parkVM.Color,
-                Brand = parkVM.Brand,
-                ArrivalTime = DateTimeHelper.GetCurrentDate(),
-                RegNr = _regNr,
-                Model = parkVM.Model,
-                Owner = owner,
-                VehicleType = vehicleType,
-                Wheels = parkVM.Wheels,
+            var vehicle = _mapper.Map<Vehicle>(parkVM);
+            vehicle.ArrivalTime = DateTimeHelper.GetCurrentDate();
+            vehicle.Owner = owner;
+            vehicle.VehicleType = vehicleType;
 
-            };
 
             _unitOfWork.VehicleRepo.Add(vehicle);
             await _unitOfWork.CompleteAsync();
