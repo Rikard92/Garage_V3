@@ -387,7 +387,7 @@ namespace GarageV3.Controllers
 
                 if (tempPrice < _ticketBasePrice) tempPrice = _ticketBasePrice;
 
-                voucher.Price = $"{tempPrice.ToString()} {_configuration["Currency"]}";
+                voucher.Price = $"{tempPrice.ToString()} {_currency}";
                 // avgift = 12Kr/h
 
                 return voucher;
