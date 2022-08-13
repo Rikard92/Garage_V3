@@ -20,11 +20,21 @@ namespace GarageV3.Controllers
         private readonly IConfiguration _configuration;
         private IUnitOfWork _unitOfWork;
 
+
+        private int _garageSpace;
+        private int _ticketBasePrice;
+        private string _currency;
+
         public VehiclesController(GarageDBContext context, IMapper mapper, IConfiguration configuration)
         {
             _mapper = mapper;
             _unitOfWork = new UnitOfWork(context);
             _configuration = configuration;
+
+            _garageSpace = int.Parse(configuration["GarageSpace"]);
+            _ticketBasePrice = int.Parse(_configuration["TicketBasePrice"]);
+            _currency = _configuration["Currency"];
+
         }
 
         public async Task<IActionResult> Index()
@@ -249,8 +259,6 @@ namespace GarageV3.Controllers
         {
             TicketViewModel voucher = new();
 
-            var ticketBasePrice = int.Parse(_configuration["TicketBasePrice"]);
-
             var vehicle = await GetVehicleModel(id.ToString());
 
             if (vehicle != null)
@@ -261,7 +269,7 @@ namespace GarageV3.Controllers
             _unitOfWork.VehicleRepo.Remove(vehicle!);
             await _unitOfWork.CompleteAsync();
 
-            voucher.Currency = _configuration["Currency"];
+            voucher.Currency = _currency;
 
             return RedirectToAction(nameof(DeleteSucess), voucher);
         }
@@ -276,8 +284,7 @@ namespace GarageV3.Controllers
         [HttpPost]
         public async Task<IActionResult> Receit(TicketViewModel model)
         {
-            var ticketBasePrice = int.Parse(_configuration["TicketBasePrice"]);
-            var currency = _configuration["Currency"];
+
 
             ReceitViewModel Receit = new()
             {
@@ -287,9 +294,9 @@ namespace GarageV3.Controllers
                 Arrival = model.ArrivalTime,
                 CheckOut = model.CheckOutTime,
                 ParkTime = model.Ptime,
-                ParkingPrice = $"{model.Price} {currency}",
-                MinimumFee = $"{ticketBasePrice} {currency}",
-                FeePerHour = $"{ticketBasePrice} {currency}"
+                ParkingPrice = $"{model.Price} {_currency}",
+                MinimumFee = $"{_ticketBasePrice} {_currency}",
+                FeePerHour = $"{_ticketBasePrice} {_currency}"
 
             };
 
@@ -363,8 +370,6 @@ namespace GarageV3.Controllers
 
             float tempPrice;
             var dateTimeNow = DateTimeHelper.GetCurrentDate();
-            var ticketBasePrice = int.Parse(_configuration["TicketBasePrice"]);
-
 
             var voucher = new TicketViewModel();
 
@@ -377,10 +382,10 @@ namespace GarageV3.Controllers
                 voucher.RegNr = _vehicle.RegNr;
                 voucher.Ptime = dateTimeNow - _vehicle.ArrivalTime;
 
-                tempPrice = (float)voucher.Ptime.TotalHours * ticketBasePrice;
+                tempPrice = (float)voucher.Ptime.TotalHours * _ticketBasePrice;
                 tempPrice = (float)Math.Round(tempPrice, 2);
 
-                if (tempPrice < ticketBasePrice) tempPrice = ticketBasePrice;
+                if (tempPrice < _ticketBasePrice) tempPrice = _ticketBasePrice;
 
                 voucher.Price = $"{tempPrice.ToString()} {_configuration["Currency"]}";
                 // avgift = 12Kr/h
