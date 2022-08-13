@@ -1,0 +1,56 @@
+﻿@model VehicleViewModel
+
+
+
+@if (ViewData["UserMessage"] is not null)
+{
+    <div class="row" id="popuper">
+        <div class="col-md-12">
+            <div class="popup-main">
+                <div class="popup-inner">
+                    <div class="popup-body bg-light">
+
+                        <h2 class="text-primary">INFORMATION @DateTime.Now.ToString("hh:mm")</h2>
+
+                        @if (ViewData["UserMessage"] is not null)
+                        {
+                            <p class="text-primary">@ViewData["UserMessage"]</p>
+                        }
+
+                    </div>
+
+                    <div class="popup-footer">
+
+                        <div class="popup-footer_ch1">
+                            <button id="btnpopuper" class="btn btn-outline-primary">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+
+const popuper = document.querySelector('#popuper'); 
+popuper.addEventListener('change', function() {
+    popuper.style.display = 'block'; 
+}); 
+
+const btnpopuper = document.querySelector('#btnpopuper');
+btnpopuper.addEventListener('click', function() {
+    popuper.style.display = 'none'; 
+}); 
+
+
+
+</script>
+
+
+
+
+
+
+
+

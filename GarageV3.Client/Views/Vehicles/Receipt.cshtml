@@ -1,0 +1,106 @@
+﻿@model GarageV3.Core.ViewModels.ReceitViewModel
+
+
+@{
+    ViewData["Title"] = "Receipt";
+}
+
+
+<main class="receipt-main">
+
+    <div class="receipt-flx">
+
+        <div class="receipt-flx-6 receipt-bg">
+            <img class="receipt-img" src="/images/parking-logotype.png" alt="logotype" />
+        </div>
+
+        <div class="receipt-flx-6 receipt-bg">
+            <h1>Parkerings-kvittens</h1>
+        </div>
+
+        <!-- Body -->
+
+        <div class="receipt-flx-12 border-bottom-dotted">
+
+            <p><span>Öppetider:</span></p>
+            <p>Vi har öppet dygnet runt och du är alltid välkommen att kontakt oss på 0100-1234567898</p>
+
+            <p><span>Priser:</span></p>
+            <p>Min. avgift: 12 sek: Långtidsparkering: kontakta oss ang. avgift</p>
+        </div>
+
+
+        <div class="receipt-flx-2">
+            <p><span>Ägare:</span></p>
+        </div>
+
+        <div class="receipt-flx-8">
+            <p>@Model.FullName</p>
+        </div>
+
+        <div class="receipt-flx-2">
+            <p><span>Registeringsnummer:</span></p>
+        </div>
+
+        <div class="receipt-flx-8">
+            <p>@Model.Reg</p>
+        </div>
+
+        <div class="receipt-flx-6">
+            <p><span>Ankomst:</span> @Model.Arrival</p>
+        </div>
+
+        <div class="receipt-flx-6">
+            <p><span>Avslutad:</span> @Model.CheckOut</p>
+        </div>
+
+        <div class="receipt-flx-6">
+            <p><span>Total tid:</span> @Model.ParkTime</p>
+        </div>
+
+        <div class="receipt-flx-12 border-bottom-dotted">
+            <h2><span>Summa:</span> @Model.ParkingPrice</h2>
+        </div>
+
+        <div class="receipt-flx-12">
+            <h2 class="txt-align">Tack för besöket</h2>
+            <h2 class="txt-align"><span>Välkommen åter</span></h2>
+        </div>
+
+        <div class="receipt-flx-12">
+
+            <a asp-action="Index">Tilbaka till parkeringen</a>
+        </div>
+
+
+    </div>
+
+
+
+</main>
+
+
+
+
+
+
+
+
+
+<h1 style="font-weight:700">Kvitto på betald parkering</h1>
+<h2>För: @Html.DisplayFor(model=>model.Reg)</h2>
+<h2>Ägd av: @Html.DisplayFor(model=> model.FullName)</h2>
+<h4>Avgift per timme : @Model.FeePerHour</h4>
+<h4>Minimiavgift : @Model.MinimumFee</h4>
+<p>Ankom:</p>
+@Html.DisplayFor(model => model.Arrival)
+<p>Utcheckad</p>
+@Html.DisplayFor(model => model.CheckOut)
+<p>Parkeringens längd</p>
+@Html.DisplayFor(model => model.ParkTime) (dygn.tim:min)
+<p>Pris</p>
+@Html.DisplayFor(model => model.ParkingPrice)
+<h3>Välkommen åter!</h3>
+
+
+

@@ -1,0 +1,77 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    background-image: url("/images/parking-spot-bg.jpg");
+    margin-bottom: 60px;
+    background-repeat:no-repeat;
+}
+
+
+.container {
+    background-color: rgba(255, 255, 255, 0.9);
+    max-height: 45rem;
+    box-shadow: 5px 5px 10px;
+    overflow-y: scroll;
+    border-radius: 10px;
+}
+
+
+.popup-main {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    /*background: rgba(0, 0, 0, 0.1);*/
+    background: transparent;
+    z-index: 99;
+}
+
+.popup-inner {
+    width: 30rem;
+    padding: 10px;
+    border: 2px solid #CCC;
+    border-radius: 10px;
+    background-image: url("/images/popup-bg.webp");
+    background-size: 100%;
+    box-shadow: 5px 10px 10px gray;
+    margin:0 auto;
+}
+
+    .popup-inner img {
+
+        object-fit: cover;
+        width:600px;
+
+        height:600px;
+    }
+
+    .popup-body, .popup-footer {
+        width: 100%;
+        padding: 30px;
+    }
+
+.popup-footer {
+    display:flex;
+    flex-direction:row;
+}
+
+.popup-footer_ch1, .popup-footer_ch2 {
+
+    flex:0 1 49%;
+}
+
+
+
+

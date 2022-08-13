@@ -1,0 +1,80 @@
+﻿@using GarageV3.Core.ViewModels
+@model IEnumerable<VehicleViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+
+    var dict = new Dictionary<string, string>();
+    dict.Add("HeadLine", "Garage teamet AB");
+    dict.Add("Content", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nulla aliquet enim tortor at. Ultrices eros in cursus turpis massa tincidunt dui ut.");
+    dict.Add("subtitle", "Vi har öppet 24/7 året runt");
+    dict.Add("Content-2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nulla aliquet enim tortor at. Ultrices eros in cursus turpis massa tincidunt dui ut.");
+
+}
+
+
+<partial name="_AnimProjector" model="dict"></partial>
+
+
+
+<h1 class="text-muted">Parkerade Fordon</h1>
+
+
+
+<p>
+    <a asp-action="Create">Parkera nytt fordon</a>
+</p>
+<form asp-action="IndexFilter" asp-controller="Vehicles" method="get">
+    <div class="input-group mb-2">        
+        <div class="input-group-append">
+            <input type="text" class="form-control" name="RegNr" placeholder="Ange reg-nummer" />
+        </div>
+        
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-search">Sök</i></button>
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.RegNr)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.VType)
+            </th>
+
+
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegNr)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.VType)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivalTime)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.RegNr">Ändra fordonsdetaljer</a> |
+                <a asp-action="Details" asp-route-id="@item.RegNr">Detaljer</a> |
+                <a asp-action="Delete" asp-route-id="@item.RegNr">Checka ut</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

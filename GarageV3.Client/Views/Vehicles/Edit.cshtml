@@ -1,0 +1,78 @@
+﻿@model Vehicle
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+@if (ViewData["UserMessage"] is not null)
+{
+   <partial name="_InfoPopup" view-data="@ViewData["UserMessage"] as ViewDataDictionary"></partial>
+}
+
+
+
+
+<h2 class="mt-4 mb-4">Uppdatera fordonets egenskaper</h2>
+
+<h4 class="mb-4">Registreringsnr: @Model.RegNr.ToUpper()</h4>
+
+<partial name="_VehicleTypeSelector" for="@Model"></partial>
+
+<hr />
+
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="RegNr" />
+            <div class="form-group mt-4">
+                <label asp-for="Color" class="control-label"></label>
+                <input asp-for="Color" class="form-control" />
+                <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-4">
+                <label asp-for="Wheels" class="control-label"></label>
+                <input asp-for="Wheels" class="form-control" />
+                <span asp-validation-for="Wheels" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-4">
+                <label asp-for="Brand" class="control-label"></label>
+                <input asp-for="Brand" class="form-control" />
+                <span asp-validation-for="Brand" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-4">
+                <label asp-for="Model" class="control-label"></label>
+                <input asp-for="Model" class="form-control" />
+                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+
+            <div class="form-groupmt-4">
+                <input hidden asp-for="VehicleType" id="vehicletypeid" name="VehicleType" class="form-control" />
+                <span hidden asp-validation-for="VehicleType" class="text-danger"></span>
+            </div>
+
+            
+            <div class="form-groupmt-4">
+                <input hidden type="datetime" asp-for="ArrivalTime"  name="ArrivalTime" class="form-control" />
+            </div>
+
+
+            <div class="form-group mt-4">
+                <input type="submit" value="Spara" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Tillbaka till listan</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

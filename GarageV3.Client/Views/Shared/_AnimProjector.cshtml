@@ -1,0 +1,30 @@
+﻿@model Dictionary<string, string>
+
+
+
+
+
+@if (Model is not null)
+{
+    <div class="anim-main">
+
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            if (Model.ElementAt(i).Key.Contains("headline", StringComparison.OrdinalIgnoreCase))
+            {
+                <h1 class="display-3 text-primary fw-bolder text-uppercase">@Model.ElementAt(i).Value</h1>
+            }
+            else if (Model.ElementAt(i).Key.Contains("subtitle", StringComparison.OrdinalIgnoreCase))
+            {
+                <h1 class="display-6 text-primary fw-bolder">@Model.ElementAt(i).Value</h1>
+            }
+            else if (Model.ElementAt(i).Key.Contains("content", StringComparison.OrdinalIgnoreCase))
+            {
+                <p class="anim-fade-in">@Model.ElementAt(i).Value</p>
+            }
+
+        }
+
+    </div>
+
+}

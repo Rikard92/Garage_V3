@@ -1,0 +1,22 @@
+﻿@model ParkCarViewModel
+@using GarageV3.Utilities
+@using static GarageV3.Utilities.Enums
+
+
+
+
+<div class="col-md-4">
+
+@*    @Html.DropDownList(Model.VehicleTypes)*@
+
+    <select class="form-select form-select-sm" name="selectedValue" onchange="fetchData(this.value);">
+
+        <option value="">-Välj fordonstyp-</option>
+
+        @foreach (var vehicleType in Model.VehicleTypes)
+        {
+            <option value="@vehicleType.VType">@vehicleType.VType</option>
+        }
+    </select>
+</div>
+

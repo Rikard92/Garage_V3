@@ -1,0 +1,94 @@
+﻿@model GarageV3.Core.ViewModels.ReceitViewModel
+
+@{
+    ViewData["Title"] = "Receit";
+}
+
+
+<main class="receipt-main">
+
+    <div class="txt-paid">
+
+        <h1>Paid</h1>
+    </div>
+
+    <div class="receipt-flx">
+
+
+
+
+        <div class="receipt-flx-6 receipt-bg">
+            <img class="receipt-img" src="/images/parking-logotype.png" alt="logotype" />
+        </div>
+
+        <div class="receipt-flx-6 receipt-bg">
+            <h3>Parkerings-kvittens</h3>
+        </div>
+
+        <!-- Body -->
+
+        <div class="receipt-flx-12 border-bottom-dotted">
+
+            <p><span>Öppetider:</span></p>
+            <p>Vi har öppet dygnet runt och du är alltid välkommen att kontakt oss på 0100-1234567898</p>
+
+            <p><span>Priser:</span></p>
+            <p>Min. avgift: 12 sek: Långtidsparkering: kontakta oss ang. priser/avgifter</p>
+        </div>
+
+
+        <div class="receipt-flx-2">
+            <p><span>Ägare:</span></p>
+        </div>
+
+        <div class="receipt-flx-8">
+            <p>@Model.FullName</p>
+        </div>
+
+        <div class="receipt-flx-2">
+            <p><span>RegNR:</span></p>
+        </div>
+
+        <div class="receipt-flx-8">
+            <p>@Model.Reg</p>
+        </div>
+
+        <div class="receipt-flx-6">
+            <p><span>Ankomst:</span> @Model.Arrival</p>
+        </div>
+
+        <div class="receipt-flx-6">
+            <p><span>Avslutad:</span> @Model.CheckOut</p>
+        </div>
+
+        <div class="receipt-flx-6">
+            <p><span>Total tid:</span> @Model.ParkTime</p>
+        </div>
+
+        <div class="receipt-flx-12 border-bottom-dotted">
+            <h2><span>Summa:</span> @Model.ParkingPrice</h2>
+        </div>
+
+        <div class="receipt-flx-12">
+            <h2 class="txt-align">Tack för besöket</h2>
+            <h2 class="txt-align"><span>Välkommen åter</span></h2>
+        </div>
+
+        <div class="receipt-flx-12">
+
+            <a asp-action="Index">Tilbaka till parkeringen</a>
+        </div>
+    </div>
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
