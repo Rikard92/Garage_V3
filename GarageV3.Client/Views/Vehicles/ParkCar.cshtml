@@ -4,17 +4,6 @@
 <h1>Parkera ditt fordon</h1>
 
 
-
-@*@if (ViewData["UserMessage"] is not null)
-{
-   <partial name="_InfoPopup" view-data="@ViewData["UserMessage"] as ViewDataDictionary"></partial>
-}*@
-
-<partial name="_VehicleTypeSelector" for="@Model"></partial>
-
-
-
-
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -24,7 +13,13 @@
 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+
             <div class="form-group mt-2" id="dropdownlistfor">
+                @await Html.PartialAsync("_VehicleTypeDropdown"); 
+            </div>
+
+
+@*            <div class="form-group mt-2" id="dropdownlistfor">
 
                 <select asp-for="VehicleType.VType" class="form-select">
 
@@ -36,7 +31,7 @@
                     }
 
                 </select>
-            </div>
+            </div>*@
 
             <div class="form-group mt-2">
                 <label asp-for="RegNr" class="control-label"></label>
