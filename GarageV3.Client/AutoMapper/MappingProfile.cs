@@ -20,6 +20,7 @@ namespace GarageV3.AutoMapper
             CreateMap<ParkCarViewModel, Vehicle>().ReverseMap();
 
 
+            CreateMap<TicketViewModel, ReceitViewModel>();
         }
     }
 }

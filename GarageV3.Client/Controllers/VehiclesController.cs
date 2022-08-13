@@ -285,6 +285,8 @@ namespace GarageV3.Controllers
         public async Task<IActionResult> Receit(TicketViewModel model)
         {
 
+            //var receipt = _mapper.Map<ReceitViewModel>(model);
+
 
             ReceitViewModel Receit = new()
             {
@@ -300,7 +302,7 @@ namespace GarageV3.Controllers
 
             };
 
-            return await Task.FromResult(View(Receit));
+            return await Task.FromResult(View(receipt));
         }
 
 
