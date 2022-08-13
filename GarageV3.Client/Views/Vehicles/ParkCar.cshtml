@@ -22,11 +22,20 @@
 
             @Html.AntiForgeryToken();
 
-
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group mt-2" id="dropdownlistfor">
-                @Html.DropDownListFor(m => m.VehicleType, Model.SelectListItems, "Välj fordon");
+
+                <select asp-for="VehicleType.VType" class="form-select">
+
+                    <option value="">Välj Fordon</option>
+
+                    @foreach (var vt in Model.VehicleTypes)
+                    {
+                        <option value="@vt.Id.ToString()">@vt.VType</option>
+                    }
+
+                </select>
             </div>
 
             <div class="form-group mt-2">
@@ -54,10 +63,7 @@
                 <input asp-for="Model" class="form-control" />
                 <span asp-validation-for="Model" class="text-danger"></span>
             </div>
-            <div class="form-group mt-2">
-                <input hidden asp-for="VehicleType.VType" id="vehicletypeid" name="VehicleType" class="form-control" />
-                <span hidden asp-validation-for="VehicleType.VType" class="text-danger"></span>
-            </div>
+
             <div class="form-group">
                 <input type="submit" value="Lägg till i garage" class="btn btn-primary" />
             </div>
