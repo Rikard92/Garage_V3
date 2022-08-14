@@ -68,6 +68,8 @@ namespace GarageV3.Controllers
         {
             var vtypes = await _unitOfWork.VehicleTypeRepo.GetAll().ToListAsync();
 
+            var owners = await _unitOfWork.OwnerTempRepo.GetAll().ToListAsync();
+
 
             var parkCarVm = new ParkCarViewModel
             {
@@ -78,6 +80,7 @@ namespace GarageV3.Controllers
                     Text = a.Id.ToString(),
                     Value = a.VType
                 }).ToArray(),
+                Owners = owners
 
             };
 
@@ -103,6 +106,9 @@ namespace GarageV3.Controllers
 
 
             //Todo: Replace this with a _unitOfWork.OwnerRepo.GetAsync()
+
+            var _owner = await _unitOfWork.OwnerTempRepo.GetAsync(parkVM.Owner.Id.ToString());
+
             var owner = new Owner
             {
                 Id = 1,
