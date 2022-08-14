@@ -2,11 +2,10 @@
 
 
 <div class="row">
+    <div class="col-md-12">
 
-    @if (Model.AltSearch == AltSearch.NONE)
-    {
-        <div class="col-md-12">
-
+        @if (Model.AltSearch == AltSearch.NONE)
+        {
             <form asp-action="SelectOption" asp-controller="Search">
 
                 @Html.AntiForgeryToken();
@@ -24,31 +23,29 @@
 
             </form>
 
-        </div>
-    }
-    else
-    {
+        }
+        else if (Model.AltSearch == AltSearch.Owner)
+        {
+            <div>
+                @await Html.PartialAsync("_SearchOwner")
+            </div>
+        }
+        else if (Model.AltSearch == AltSearch.Vehicle)
+        {
+            <div>
+                @await Html.PartialAsync("_SearchVehicle")
+            </div>
+        }
 
-    }
-
-
-
-
-
-    <div class="col-md-12">
-
-        <div>
-            @await Html.PartialAsync("_SearchVehicle")
-        </div>
-
-        <div>
-            @await Html.PartialAsync("_SearchOwner")
-        </div>
-
-        <div>
-            @await Html.PartialAsync("_SearchMemberShip")
-        </div>
-
+        else if (Model.AltSearch == AltSearch.MemberShip)
+        {
+            <div>
+                @await Html.PartialAsync("_SearchMemberShip")
+            </div>
+        }
+        else
+        {
+            <h3>Felaktigt alternativ</h3>
+        }
     </div>
-</div>
 
