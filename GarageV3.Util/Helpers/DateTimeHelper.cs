@@ -15,10 +15,10 @@ namespace GarageV3.Util.Helpers
 
             var diff = DateTime.Now - value;
 
-            if (diff.Days > 0) { sb.Append($"Dagar: {diff.Days} "); }
-            if (diff.Hours > 0) { sb.Append($"Timmar: {diff.Hours} "); }
-            if (diff.Minutes > 0) { sb.Append($"Minuter: {diff.Minutes} "); }
-            if (diff.Days == 0 && diff.Hours == 0 && diff.Minutes == 0) { sb.Append("Timmar: 1 "); }
+            if (diff.Days > 0) { sb.Append($"{diff.Days} dagar | "); }
+            if (diff.Hours > 0) { sb.Append($"{diff.Hours} timmar | "); }
+            if (diff.Minutes > 0) { sb.Append($"{diff.Minutes} minuter"); }
+            if (diff.Days == 0 && diff.Hours == 0 && diff.Minutes == 0) { sb.Append("1 timme "); }
 
 
             return sb.ToString();
