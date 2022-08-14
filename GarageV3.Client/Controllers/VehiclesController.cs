@@ -7,7 +7,6 @@ using GarageV3.Data.Repositories.Interfaces;
 using GarageV3.Util.Extensions;
 using GarageV3.Util.Helpers;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -68,19 +67,14 @@ namespace GarageV3.Controllers
         {
             var vtypes = await _unitOfWork.VehicleTypeRepo.GetAll().ToListAsync();
 
-            var owners = await _unitOfWork.OwnerTempRepo.GetAll().ToListAsync();
+            var owners = _unitOfWork.OwnerTempRepo.GetAll();
 
 
             var parkCarVm = new ParkCarViewModel
             {
                 Owner = new Owner(),
                 VehicleTypes = vtypes,
-                SelectListItems = vtypes.Select(a => new SelectListItem
-                {
-                    Text = a.Id.ToString(),
-                    Value = a.VType
-                }).ToArray(),
-                Owners = owners
+                Owners = await _mapper.ProjectTo<OwnerViewModel>(owners).ToListAsync()
 
             };
 
@@ -109,13 +103,13 @@ namespace GarageV3.Controllers
 
             var _owner = await _unitOfWork.OwnerTempRepo.GetAsync(parkVM.Owner.Id.ToString());
 
-            var owner = new Owner
-            {
-                Id = 1,
-                FirstName = "Pelle",
-                LastName = "Jonsson",
-                PersonNumber = 199005075012
-            };
+            //var owner = new Owner
+            //{
+            //    Id = 1,
+            //    FirstName = "Pelle",
+            //    LastName = "Jonsson",
+            //    PersonNumber = 199005075012
+            //};
 
 
             var vehicleType = await _unitOfWork.VehicleTypeRepo.GetAsync(parkVM.VehicleType.Id.ToString());
@@ -126,7 +120,7 @@ namespace GarageV3.Controllers
 
             var vehicle = _mapper.Map<Vehicle>(parkVM);
             vehicle.ArrivalTime = DateTimeHelper.GetCurrentDate();
-            vehicle.Owner = owner;
+            vehicle.Owner = _owner;
             vehicle.VehicleType = vehicleType;
 
 

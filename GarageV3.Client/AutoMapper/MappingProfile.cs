@@ -21,6 +21,12 @@ namespace GarageV3.AutoMapper
 
 
             CreateMap<TicketViewModel, ReceitViewModel>();
+
+            CreateMap<TicketViewModel, ReceitViewModel>();
+
+            CreateMap<Owner, OwnerViewModel>();
+            CreateMap<Owner, OwnerViewModel>().ReverseMap();
+
         }
     }
 }

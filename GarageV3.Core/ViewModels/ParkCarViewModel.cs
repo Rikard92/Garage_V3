@@ -1,5 +1,4 @@
 ﻿using GarageV3.Core.Models;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
 namespace GarageV3.Core.ViewModels
@@ -10,14 +9,11 @@ namespace GarageV3.Core.ViewModels
         public IEnumerable<VehicleType> VehicleTypes { get; set; } = new List<VehicleType>();
 
         public VehicleType VehicleType { get; set; } = new();
-
-        public SelectListItem[] SelectListItems { get; set; }
-
         public Vehicle Vehicle { get; set; }
 
         public Owner Owner { get; set; }
 
-        public IEnumerable<Owner> Owners { get; set; } = new List<Owner>();
+        public IEnumerable<OwnerViewModel> Owners { get; set; } = new List<OwnerViewModel>();
 
         public int Id { get; set; }
 
