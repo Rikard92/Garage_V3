@@ -1,0 +1,54 @@
+﻿@model SearchViewModel
+
+
+<div class="row">
+
+    @if (Model.AltSearch == AltSearch.NONE)
+    {
+        <div class="col-md-12">
+
+            <form asp-action="SelectOption" asp-controller="Search">
+
+                @Html.AntiForgeryToken();
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <select asp-for="AltSearch">
+                    <option value="">-Välj sök alternativ-</option>
+                    <option value="@AltSearch.Vehicle">Fordon</option>
+                    <option value="@AltSearch.Owner">Ägare</option>
+                    <option value="@AltSearch.MemberShip">Medlemsskap</option>
+                </select>
+
+                <button type="submit">Skicka</button>
+
+            </form>
+
+        </div>
+    }
+    else
+    {
+
+    }
+
+
+
+
+
+    <div class="col-md-12">
+
+        <div>
+            @await Html.PartialAsync("_SearchVehicle")
+        </div>
+
+        <div>
+            @await Html.PartialAsync("_SearchOwner")
+        </div>
+
+        <div>
+            @await Html.PartialAsync("_SearchMemberShip")
+        </div>
+
+    </div>
+</div>
+

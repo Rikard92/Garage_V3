@@ -32,10 +32,11 @@ namespace GarageV3.Client.Controllers
             _currency = _configuration["Currency"];
         }
 
-
-        public IActionResult Index()
+        [HttpGet]
+        [ActionName("Load")]
+        public async Task<IActionResult> LoadAsync()
         {
-            return View();
+            return await Task.FromResult(View("../Search/SearchMain", new SearchViewModel()));
         }
 
         [HttpPost]
@@ -51,6 +52,15 @@ namespace GarageV3.Client.Controllers
             //return View
 
 
+            throw new NotImplementedException();
+        }
+
+
+
+        [HttpPost]
+        [ActionName("SelectOption")]
+        public async Task<IActionResult> SelectOptionAsync(SearchViewModel model)
+        {
             throw new NotImplementedException();
         }
 

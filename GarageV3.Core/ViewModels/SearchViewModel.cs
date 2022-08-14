@@ -1,6 +1,8 @@
 ﻿namespace GarageV3.Core.ViewModels
 {
 
+    public enum AltSearch { NONE, Vehicle, MemberShip, Owner }
+
 #nullable disable
     public class SearchViewModel
     {
@@ -11,6 +13,7 @@
         //ToDo: Add MemberShipViewModel
         //public IEnumerable<MemberShipViewModel> MemberShips { get; set; }
 
+        public AltSearch AltSearch { get; set; }
 
     }
 }
