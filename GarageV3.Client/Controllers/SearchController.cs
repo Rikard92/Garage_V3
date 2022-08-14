@@ -61,7 +61,7 @@ namespace GarageV3.Client.Controllers
         [ActionName("SelectOption")]
         public async Task<IActionResult> SelectOptionAsync(SearchViewModel model)
         {
-            throw new NotImplementedException();
+            return await Task.FromResult(View(model));
         }
 
     }
