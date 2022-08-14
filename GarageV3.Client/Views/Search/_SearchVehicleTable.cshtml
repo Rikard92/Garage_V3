@@ -1,0 +1,85 @@
+﻿@model SearchViewModel
+
+<div class="row">
+
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+                <tr>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Vehicle.RegNr)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Vehicle.VType)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Vehicle.Brand)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Vehicle.Model)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Vehicle.ArrivalTime)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Vehicle.Wheels)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Vehicles)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RegNr)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VType)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Brand)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Brand)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ArrivalTime)
+                        </td>
+
+                        
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Wheels)
+                        </td>
+
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.RegNr">Ändra fordonsdetaljer</a> |
+                            <a asp-action="Details" asp-route-id="@item.RegNr">Detaljer</a> |
+                            <a asp-action="Delete" asp-route-id="@item.RegNr">Checka ut</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+

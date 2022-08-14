@@ -8,7 +8,7 @@
     {
         public IEnumerable<VehicleViewModel> Vehicles { get; set; }
 
-        public VehicleViewModel Vehicle { get; set; } = new();
+        public VehicleViewModel Vehicle { get; set; } = new VehicleViewModel();
 
         public IEnumerable<OwnerViewModel> Owners { get; set; }
 
