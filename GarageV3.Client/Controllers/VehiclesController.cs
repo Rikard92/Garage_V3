@@ -20,7 +20,7 @@ namespace GarageV3.Controllers
         private IUnitOfWork _unitOfWork;
 
 
-        private int _garageSpace;
+        private int _garageCapacity;
         private int _ticketBasePrice;
         private string _currency;
 
@@ -30,7 +30,7 @@ namespace GarageV3.Controllers
             _unitOfWork = new UnitOfWork(context);
             _configuration = configuration;
 
-            _garageSpace = int.Parse(configuration["GarageSpace"]);
+            _garageCapacity = int.Parse(configuration["GarageCapacity"]);
             _ticketBasePrice = int.Parse(_configuration["TicketBasePrice"]);
             _currency = _configuration["Currency"];
 
@@ -67,6 +67,8 @@ namespace GarageV3.Controllers
         {
             var vtypes = await _unitOfWork.VehicleTypeRepo.GetAll().ToListAsync();
 
+            var _garages = await _unitOfWork.VehicleRepo.GetAll().ToListAsync();
+
             var owners = _unitOfWork.OwnerTempRepo.GetAll();
 
 
@@ -74,7 +76,10 @@ namespace GarageV3.Controllers
             {
                 Owner = new OwnerViewModel(),
                 VehicleTypes = vtypes,
-                Owners = await _mapper.ProjectTo<OwnerViewModel>(owners).ToListAsync()
+                Owners = await _mapper.ProjectTo<OwnerViewModel>(owners).ToListAsync(),
+                CurrentGarageCount = _garages.Count(),
+                GarageCapacity = _garageCapacity
+
 
             };
 

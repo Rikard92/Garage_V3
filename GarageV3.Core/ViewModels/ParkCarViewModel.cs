@@ -44,5 +44,11 @@ namespace GarageV3.Core.ViewModels
 
         [Display(Name = "Ankomsttid")]
         public DateTime ArrivalTime { get; set; } = DateTime.MinValue;
+
+
+        public int GarageCapacity { get; set; }
+
+        public int CurrentGarageCount { get; set; }
+
     }
 }
