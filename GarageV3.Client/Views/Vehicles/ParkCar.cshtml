@@ -1,15 +1,36 @@
 ﻿@model ParkCarViewModel
 
 
-<h1>Parkera ditt fordon</h1>
+
 
 
 @if (Model.CurrentGarageCount >= Model.CurrentGarageCount)
 {
-    <h3>Garage är fullt. Kapacitet: @Model.GarageCapacity | Antal fordon i garget just nu: @Model.CurrentGarageCount</h3>
 
-    <div>
-        <a asp-action="Index">Tillbaka till listan</a>
+    <div class="card">
+        <div class="card-header">
+            Featured
+        </div>
+        <div class="card-body">
+            <h5 class="card-title text-danger">INFORMATION</h5>
+            <h4 class="card-text text-danger">
+                Just nu är det fullt i garaget.
+                Max-kapacitet: @Model.GarageCapacity | Samtliga platser är tyvärr upptagna
+            </h4>
+
+            <br>
+            <p class="fw-bold">
+                Boka en plats redan nu så skickar vi dig ett sms när du det finns platser lediga igen.<br>
+                VÄLJ <a href="#">BOKA</a>
+            </p>
+
+
+            <hr>
+            <h3>Försök igen lite senare</h3>
+
+
+            <a href="index" class="btn btn-primary"> Gå tillbaka</a>
+        </div>
     </div>
 }
 else
@@ -17,6 +38,9 @@ else
     <hr />
     <div class="row">
         <div class="col-md-4">
+
+            <h1>Parkera ditt fordon</h1>
+
             <form asp-action="ParkCar" id="formid">
 
                 @Html.AntiForgeryToken();
