@@ -36,7 +36,9 @@ namespace GarageV3.Client.Controllers
         [ActionName("Load")]
         public async Task<IActionResult> LoadAsync()
         {
-            return await Task.FromResult(View("../Search/SearchMain", new SearchViewModel()));
+            var model = SetLoadOption(new SearchViewModel());
+
+            return await Task.FromResult(View("../Search/SearchMain", model));
         }
 
         [HttpPost]
@@ -61,8 +63,33 @@ namespace GarageV3.Client.Controllers
         [ActionName("SelectOption")]
         public async Task<IActionResult> SelectOptionAsync(SearchViewModel model)
         {
-            return await Task.FromResult(View("../Search/SearchMain", model));
+            var _model = SetLoadOption(model);
+
+            _model.SubTitle = "Utför sökningar baserat på dina kriterier";
+
+            return await Task.FromResult(View("../Search/SearchMain", _model));
         }
 
+
+        private SearchViewModel SetLoadOption(SearchViewModel _model)
+        {
+            switch (_model.AltSearch)
+            {
+                case AltSearch.MemberShip:
+                    _model.HeadLine = "Sök i medlemsregistret";
+                    break;
+                case AltSearch.Owner:
+                    _model.HeadLine = "Sök bland ägare";
+                    break;
+                case AltSearch.Vehicle:
+                    _model.HeadLine = "Sök i garaget";
+                    break;
+                default:
+                    _model.HeadLine = "Sök i databasen";
+                    break;
+            }
+
+            return _model;
+        }
     }
 }

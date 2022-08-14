@@ -15,5 +15,8 @@
 
         public AltSearch AltSearch { get; set; }
 
+
+        public string HeadLine { get; set; }
+        public string SubTitle { get; set; }
     }
 }
