@@ -38,12 +38,12 @@ namespace GarageV3.Client.Controllers
             return View();
         }
 
-        [HttpGet]
+        [HttpPost]
         [ActionName("FindVehicle")]
-        public async Task<IActionResult> FindVehicleAsync(string arg01, string arg02 = "", string arg03 = "")
+        public async Task<IActionResult> FindVehicleAsync(VehicleViewModel model)
         {
 
-            Expression<Func<Vehicle, bool>> predicate = q => q.Brand.ToLower().Contains(arg01);
+            Expression<Func<Vehicle, bool>> predicate = q => q.Brand.ToLower().Contains(model.Brand);
 
             var result = _mapper.ProjectTo<VehicleViewModel>(_unitOfWork.VehicleRepo.Find(predicate));
 
