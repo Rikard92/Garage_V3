@@ -73,7 +73,7 @@ namespace GarageV3.Data.Seed
                     OwnerId = owner.Id,
                     VehicleType = vehicleType,
                     VehicleTypeId = vehicleType.Id,
-                    ArrivalTime = DateTime.Now.AddDays(rnd.Next(-5, 10)),
+                    ArrivalTime = DateTime.Now.AddDays(rnd.Next(-14, 0)),
 
 
                 };
