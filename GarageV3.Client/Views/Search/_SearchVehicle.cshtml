@@ -5,26 +5,33 @@
     <div class="col-md-6">
         <form asp-action="SearchVehicle" asp-controller="Search">
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                <label for="exampleInputEmail1" class="form-label">Registrering nummer</label>
+                <input asp-for="Vehicle.RegNr" type="text" class="form-control" id="regme" aria-describedby="reghelp">
+                <div id="reghelp" class="form-text">We'll never share your email with anyone else.</div>
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
+                <label for="colorid" class="form-label">Färg</label>
+                <input asp-for="Vehicle.Color" type="text" class="form-control">
             </div>
-            <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+
+            <div class="mb-3">
+                <label for="weelid" class="form-label">Antal hjul</label>
+                <input asp-for="Vehicle.Wheels" type="number" class="form-control">
             </div>
+
+            <div class="mb-3">
+                <label for="weelid" class="form-label">Antal hjul</label>
+                <input asp-for="Vehicle.Wheels" type="number" class="form-control">
+            </div>
+
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 
 
-<div class="mt-4">
-    <a class="fw-bold" asp-controller="Search" asp-action="Load">Tillbaka</a>
-</div>
+    <div class="mt-4">
+        <a class="fw-bold" asp-controller="Search" asp-action="Load">Tillbaka</a>
+    </div>
 
 </div>
 
