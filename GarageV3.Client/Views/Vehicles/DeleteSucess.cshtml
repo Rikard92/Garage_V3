@@ -62,7 +62,7 @@
             @Html.DisplayNameFor(model => model.Price)
         </dt>
         <dd class="col-sm-8">
-            @Html.DisplayFor(model => model.Price) 
+            @Html.DisplayFor(model => model.Price)
         </dd>
 
     </dl>
@@ -79,6 +79,7 @@
             <input hidden type="datetime" asp-for="ArrivalTime" />
             <input hidden type="datetime" asp-for="CheckOutTime" />
             <input hidden asp-for="ParkTime" />
+            <input hidden asp-for="ParkTimeStr" />
             <input hidden asp-for="Price" />
 
             <button type="submit" class="btn btn-primary">Skriv ut kvitto</button>

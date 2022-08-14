@@ -290,8 +290,8 @@ namespace GarageV3.Controllers
                 RegNr = model!.RegNr!,
                 ArrivalTime = model.ArrivalTime,
                 CheckOutTime = model.CheckOutTime,
-                ParkTime = model.ParkTime,
-                ParkingPrice = $"{model.Price} {_currency}",
+                ParkTimeStr = model.ParkTimeStr,
+                ParkingPrice = $"{model.Price}",
                 MinimumFee = $"{_ticketBasePrice} {_currency}",
                 FeePerHour = $"{_ticketBasePrice} {_currency}"
 
