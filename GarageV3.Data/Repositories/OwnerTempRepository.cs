@@ -42,7 +42,7 @@ namespace MKDevx.Data.Repositories
             try
             {
                 return await AppDbContext!.Owners
-                    .Include(i => i.Id)
+                    .Include(i => i.Membership)
                     .Include(i => i.Vehicles)
                     .AsSplitQuery()
                     .FirstOrDefaultAsync(a => a.Id == int.Parse(id) || a.PersonNumber == int.Parse(id));

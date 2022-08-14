@@ -10,7 +10,6 @@ namespace GarageV3.Core.ViewModels
         [Display(Name = "Förnamn")]
         public string? FirstName { get; set; }
 
-        [Required]
         [Display(Name = "Efternamn")]
         public string? LastName { get; set; }
 

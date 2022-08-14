@@ -72,7 +72,7 @@ namespace GarageV3.Controllers
 
             var parkCarVm = new ParkCarViewModel
             {
-                Owner = new Owner(),
+                Owner = new OwnerViewModel(),
                 VehicleTypes = vtypes,
                 Owners = await _mapper.ProjectTo<OwnerViewModel>(owners).ToListAsync()
 

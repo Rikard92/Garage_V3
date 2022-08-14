@@ -11,7 +11,7 @@ namespace GarageV3.Core.ViewModels
         public VehicleType VehicleType { get; set; } = new();
         public Vehicle Vehicle { get; set; }
 
-        public Owner Owner { get; set; }
+        public OwnerViewModel Owner { get; set; }
 
         public IEnumerable<OwnerViewModel> Owners { get; set; } = new List<OwnerViewModel>();
 
