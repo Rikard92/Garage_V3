@@ -11,6 +11,8 @@ namespace GarageV3.Data
         public IVehicleRepository VehicleRepo { get; private set; }
         public IVehicleTypeRepository VehicleTypeRepo { get; private set; }
 
+        public IOwnerTempRepository OwnerTempRepo { get; private set; }
+
 
 
         public UnitOfWork(GarageDBContext _context)
@@ -19,6 +21,8 @@ namespace GarageV3.Data
 
             VehicleRepo = new VehicleRepository(_context);
             VehicleTypeRepo = new VehicleTypeRepository(_context);
+            OwnerTempRepo = new OwnerTempRepository(_context);
+
         }
 
         public async Task<int> CompleteAsync(bool stopTracker = false)
