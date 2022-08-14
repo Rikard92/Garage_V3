@@ -99,18 +99,8 @@ namespace GarageV3.Controllers
             }
 
 
-            //Todo: Replace this with a _unitOfWork.OwnerRepo.GetAsync()
-
+            //Todo: Maybe change this with the real OwnerRepos. If time is available
             var _owner = await _unitOfWork.OwnerTempRepo.GetAsync(parkVM.Owner.Id.ToString());
-
-            //var owner = new Owner
-            //{
-            //    Id = 1,
-            //    FirstName = "Pelle",
-            //    LastName = "Jonsson",
-            //    PersonNumber = 199005075012
-            //};
-
 
             var vehicleType = await _unitOfWork.VehicleTypeRepo.GetAsync(parkVM.VehicleType.Id.ToString());
 
