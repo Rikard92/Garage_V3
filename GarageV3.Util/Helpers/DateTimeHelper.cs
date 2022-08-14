@@ -9,7 +9,7 @@ namespace GarageV3.Util.Helpers
         public static DateTime GetCurrentDate(bool isUtc = false) => isUtc ? DateTime.UtcNow : DateTime.Now;
 
 
-        public static string BeautifyDate(this DateTime value)
+        public static string BeautifyDiffDate(this DateTime value)
         {
             sb.Clear();
 
@@ -18,6 +18,8 @@ namespace GarageV3.Util.Helpers
             if (diff.Days > 0) { sb.Append($"Dagar: {diff.Days} "); }
             if (diff.Hours > 0) { sb.Append($"Timmar: {diff.Hours} "); }
             if (diff.Minutes > 0) { sb.Append($"Minuter: {diff.Minutes} "); }
+            if (diff.Days == 0 && diff.Hours == 0 && diff.Minutes == 0) { sb.Append("Timmar: 1 "); }
+
 
             return sb.ToString();
         }
