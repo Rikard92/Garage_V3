@@ -23,6 +23,7 @@
 
         public AltSearch AltSearch { get; set; }
 
+        public string UserInfo { get; set; }
 
         public string HeadLine { get; set; }
         public string SubTitle { get; set; }

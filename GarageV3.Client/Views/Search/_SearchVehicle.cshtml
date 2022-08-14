@@ -30,9 +30,14 @@
                 <input asp-for="Vehicle.Brand" type="text" class="form-control">
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Sök</button>
         </form>
    
+        @if (!string.IsNullOrWhiteSpace(Model.UserInfo))
+        {
+            <p class="text-danger">@Model.UserInfo</p>
+        }
+
         <!-- Result from search -->
 
         @if (Model.Vehicles is not null && Model.Vehicles.Any())

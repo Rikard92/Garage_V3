@@ -43,15 +43,23 @@ namespace GarageV3.Client.Controllers
 
         [HttpPost]
         [ActionName("FindVehicle")]
-        public async Task<IActionResult> FindVehicleAsync(VehicleViewModel model)
+        public async Task<IActionResult> FindVehicleAsync(SearchViewModel model)
         {
 
-            Expression<Func<Vehicle, bool>> predicate = q => q.Brand.ToLower().Contains(model.Brand);
+            Expression<Func<Vehicle, bool>> predicate = q => q.RegNr.ToLower().Contains(model.Vehicle.RegNr);
+
 
             var result = _mapper.ProjectTo<VehicleViewModel>(_unitOfWork.VehicleRepo.Find(predicate));
 
+            var userInfo = result.Any() ? "" : "Inga poster funna";
 
-            //return View
+            model.AltSearch = AltSearch.Vehicle;
+            var _model = SetLoadOption(model, userInfo);
+
+            model.Vehicles = result;
+
+
+            return await Task.FromResult(View("../Search/SearchMain", model));
 
 
             throw new NotImplementedException();
@@ -71,7 +79,7 @@ namespace GarageV3.Client.Controllers
         }
 
 
-        private SearchViewModel SetLoadOption(SearchViewModel _model)
+        private SearchViewModel SetLoadOption(SearchViewModel _model, string userInfo = "")
         {
             switch (_model.AltSearch)
             {
@@ -88,6 +96,8 @@ namespace GarageV3.Client.Controllers
                     _model.HeadLine = "Sök i databasen";
                     break;
             }
+
+            _model.UserInfo = userInfo;
 
             return _model;
         }
