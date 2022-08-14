@@ -1,0 +1,12 @@
+﻿@model ParkCarViewModel
+
+
+<select asp-for="VehicleType.Id" class="form-select">
+
+    <option value="">Välj Fordon</option>
+
+    @foreach (var vt in Model.Owners)
+    {
+        <option value="@vt.Id">@vt.FirstName @vt.LastName</option>
+    }
+</select>

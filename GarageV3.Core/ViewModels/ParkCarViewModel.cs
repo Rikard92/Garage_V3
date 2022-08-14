@@ -17,6 +17,8 @@ namespace GarageV3.Core.ViewModels
 
         public Owner Owner { get; set; }
 
+        public IEnumerable<Owner> Owners { get; set; } = new List<Owner>();
+
         public int Id { get; set; }
 
         [Required]
