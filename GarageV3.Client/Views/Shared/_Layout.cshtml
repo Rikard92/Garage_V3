@@ -7,15 +7,15 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/GarageV3.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/animation.css"/>
-    <link rel="stylesheet" href="~/css/ReceiptStyle.css"/>
+    <link rel="stylesheet" href="~/css/animation.css" />
+    <link rel="stylesheet" href="~/css/ReceiptStyle.css" />
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="Garaget" asp-area="" asp-controller="Home" asp-action="Index">
-                    <img width="80" src="/images/Logotype.webp" alt="logotype"/>
+                    <img width="80" src="/images/Logotype.webp" alt="logotype" />
 
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -31,6 +31,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Vehicles" asp-action="Index">Fordon</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Vehicles" asp-action="Index">För medlemmar</a>
+                        </li>
+
+
                     </ul>
                 </div>
             </div>
@@ -47,7 +53,7 @@
             &copy; 2022 - GarageV3 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-@*    <script src="~/js/fetchscript.js"></script>*@
+    @*    <script src="~/js/fetchscript.js"></script>*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
