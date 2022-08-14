@@ -378,6 +378,7 @@ namespace GarageV3.Controllers
                 voucher.CheckOutTime = DateTime.Now;
                 voucher.RegNr = _vehicle.RegNr;
                 voucher.ParkTime = dateTimeNow - _vehicle.ArrivalTime;
+                voucher.ParkTimeStr = _vehicle.ArrivalTime.BeautifyDate();
 
                 tempPrice = (float)voucher.ParkTime.TotalHours * _ticketBasePrice;
                 tempPrice = (float)Math.Round(tempPrice, 2);

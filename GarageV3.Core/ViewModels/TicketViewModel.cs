@@ -27,6 +27,9 @@
         [Display(Name = "Parkerad tid")]
         public TimeSpan ParkTime { get; set; }
 
+        public string? ParkTimeStr { get; set; }
+
+
         [Display(Name = "Parkeringsavgift")]
         public string? Price { get; set; }
 
