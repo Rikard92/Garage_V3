@@ -46,7 +46,6 @@ namespace GarageV3.Client.Controllers
         [ActionName("FindVehicle")]
         public async Task<IActionResult> FindVehicleAsync(SearchViewModel model)
         {
-
             var result = new List<VehicleViewModel>();
 
             if (string.IsNullOrWhiteSpace(model.SearchOption))
