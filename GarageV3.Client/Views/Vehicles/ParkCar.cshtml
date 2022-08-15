@@ -86,12 +86,19 @@ else
                     <input type="submit" value="Lägg till i garage" class="btn btn-primary" />
                 </div>
             </form>
-        </div>
-    </div>
 
-    <div>
-        <a asp-action="Index">Tillbaka till listan</a>
-    </div>
+
+            @if (!string.IsNullOrWhiteSpace(Model.UserMessage))
+            {
+                <p class="text-danger">@Model.UserMessage</p>
+            }
+
+            </div>
+        </div>
+
+        <div>
+            <a asp-action="Index">Tillbaka till listan</a>
+        </div>
 }
 
 

@@ -111,7 +111,14 @@ namespace GarageV3.Controllers
             {
                 ViewData["HeadLine"] = "Meddelande";
                 ViewData["UserMessage"] = $"Angivet registeringsnummer {_regNr} existerar redan vilket måste vara unikt";
-                return View();
+
+                parkVM.GarageCapacity = _garageCapacity;
+                parkVM.CurrentGarageCount = _unitOfWork.VehicleRepo.GetAll().Count();
+
+                parkVM.VehicleVM = new VehicleViewModel { VehicleTypes = await GetVehicleType() };
+                parkVM.Owners = await GetOwners();
+                parkVM.UserMessage = $"Angivet registeringsnummer {_regNr} existerar redan vilket måste vara unikt";
+                return View(parkVM);
             }
 
 
@@ -416,5 +423,16 @@ namespace GarageV3.Controllers
             }
 
         }
+
+
+        private async Task<IEnumerable<VehicleTypeViewModel>> GetVehicleType() =>
+            await _mapper.ProjectTo<VehicleTypeViewModel>(_unitOfWork.VehicleTypeRepo.GetAll()).ToListAsync();
+
+
+        private async Task<IEnumerable<OwnerViewModel>> GetOwners() =>
+            await _mapper.ProjectTo<OwnerViewModel>(_unitOfWork.OwnerRepo.GetAll()).ToListAsync();
+
+
+
     }
 }

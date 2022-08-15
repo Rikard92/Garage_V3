@@ -53,5 +53,9 @@ namespace GarageV3.Core.ViewModels
 
         public int VehicleTypeId { get; set; }
 
+        public bool IsParked { get; set; }
+
+        public string UserMessage { get; set; } = string.Empty;
+
     }
 }
