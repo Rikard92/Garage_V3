@@ -60,6 +60,7 @@ namespace GarageV3.Client.Controllers
                     q.RegNr.ToLower().Contains(model.SearchOption.ToLower()) ||
                     q.Brand.ToLower().Contains(model.SearchOption.ToLower()) ||
                     q.Model.ToLower().Contains(model.SearchOption.ToLower()) ||
+                    q.Color.ToLower().Contains(model.SearchOption.ToLower()) ||
                     q.VehicleType.VType.ToLower().Contains(model.SearchOption.ToLower());
 
                 result = await _mapper.ProjectTo<VehicleViewModel>(_unitOfWork.VehicleRepo.Find(predicate)).ToListAsync();

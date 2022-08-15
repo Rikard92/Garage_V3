@@ -24,6 +24,11 @@
                     </th>
 
                     <th>
+                        @Html.DisplayNameFor(model => model.Vehicle.Color)
+                    </th>
+
+
+                    <th>
                         @Html.DisplayNameFor(model => model.Vehicle.ArrivalTime)
                     </th>
 
@@ -55,10 +60,14 @@
                         </td>
 
                         <td>
+                            @Html.DisplayFor(modelItem => item.Color)
+                        </td>
+
+                        <td>
                             @Html.DisplayFor(modelItem => item.ArrivalTime)
                         </td>
 
-                        
+
                         <td>
                             @Html.DisplayFor(modelItem => item.Wheels)
                         </td>
