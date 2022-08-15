@@ -86,8 +86,8 @@ namespace GarageV3.Controllers
             var parkCarVm = new ParkCarViewModel
             {
                 Owner = new OwnerViewModel(),
-                VehicleVM = new VehicleViewModel { VehicleTypes = vtypes.ToList() },
-                Owners = await _mapper.ProjectTo<OwnerViewModel>(owners).ToListAsync(),
+                VehicleVM = new VehicleViewModel { VehicleTypes = await GetVehicleTypes() },
+                Owners = await GetOwners(),
                 CurrentGarageCount = _garages.Count(),
                 GarageCapacity = _garageCapacity
 
@@ -115,7 +115,7 @@ namespace GarageV3.Controllers
                 parkVM.GarageCapacity = _garageCapacity;
                 parkVM.CurrentGarageCount = _unitOfWork.VehicleRepo.GetAll().Count();
 
-                parkVM.VehicleVM = new VehicleViewModel { VehicleTypes = await GetVehicleType() };
+                parkVM.VehicleVM = new VehicleViewModel { VehicleTypes = await GetVehicleTypes() };
                 parkVM.Owners = await GetOwners();
                 parkVM.UserMessage = $"Angivet registeringsnummer {_regNr} existerar redan vilket måste vara unikt";
                 return View(parkVM);
@@ -425,7 +425,7 @@ namespace GarageV3.Controllers
         }
 
 
-        private async Task<IEnumerable<VehicleTypeViewModel>> GetVehicleType() =>
+        private async Task<IEnumerable<VehicleTypeViewModel>> GetVehicleTypes() =>
             await _mapper.ProjectTo<VehicleTypeViewModel>(_unitOfWork.VehicleTypeRepo.GetAll()).ToListAsync();
 
 
