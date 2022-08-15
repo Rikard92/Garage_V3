@@ -17,6 +17,9 @@ namespace GarageV3.Core.ViewModels
 
         public IEnumerable<MemberShipsViewModel> MemberShips { get; set; }
 
+        public MemberShipsViewModel MemberShipVM { get; set; } = new();
+
+
         public Membership MemberShip { get; set; }
 
         public OwnerViewModel Owner { get; set; } = new();
