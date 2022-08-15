@@ -4,8 +4,6 @@ using GarageV3.Core.Models;
 using GarageV3.Core.ViewModels;
 using GarageV3.Data;
 using GarageV3.Data.Repositories.Interfaces;
-using GarageV3.Util.Extensions;
-using GarageV3.Util.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -95,7 +93,7 @@ namespace GarageV3.Controllers
 
             var _regNr = parkVM.RegNr.RemoveWhiteSpace().ToUpper();
 
-            var isExist = await GetVehicle(_regNr);
+            var isExist = await GetVehicle(_regNr.ToString());
             if (isExist is not null)
             {
                 ViewData["HeadLine"] = "Meddelande";
@@ -110,7 +108,7 @@ namespace GarageV3.Controllers
             var vehicleType = await _unitOfWork.VehicleTypeRepo.GetAsync(parkVM.VehicleType.Id.ToString());
 
             parkVM.ArrivalTime = DateTime.Now;
-            parkVM.RegNr = _regNr.ToUpper().RemoveWhiteSpace();
+            parkVM.RegNr = _regNr.ToString().ToUpper().RemoveWhiteSpace();
             parkVM.Color = parkVM.Color.TranslateColorLang();
 
             var vehicle = _mapper.Map<Vehicle>(parkVM);
