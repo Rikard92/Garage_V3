@@ -75,7 +75,7 @@ namespace GarageV3.Controllers
             var parkCarVm = new ParkCarViewModel
             {
                 Owner = new OwnerViewModel(),
-                VehicleTypes = vtypes,
+                VehicleVM = new VehicleViewModel { VehicleTypes = vtypes.ToList() },
                 Owners = await _mapper.ProjectTo<OwnerViewModel>(owners).ToListAsync(),
                 CurrentGarageCount = _garages.Count(),
                 GarageCapacity = _garageCapacity

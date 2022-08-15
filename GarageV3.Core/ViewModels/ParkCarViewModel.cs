@@ -7,9 +7,7 @@ namespace GarageV3.Core.ViewModels
     public class ParkCarViewModel
     {
 
-
-
-        public IEnumerable<VehicleTypeViewModel> VehicleTypes { get; set; }
+        public VehicleViewModel VehicleVM { get; set; }
 
         public VehicleType VehicleType { get; set; } = new();
         public Vehicle Vehicle { get; set; }
@@ -52,6 +50,8 @@ namespace GarageV3.Core.ViewModels
         public int GarageCapacity { get; set; }
 
         public int CurrentGarageCount { get; set; }
+
+        public int VehicleTypeId { get; set; }
 
     }
 }

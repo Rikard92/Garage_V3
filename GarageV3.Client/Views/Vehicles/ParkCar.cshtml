@@ -46,7 +46,7 @@ else
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                 <div class="form-group mt-2" id="dropdownlistfor">
-                    @await Html.PartialAsync("_VehicleTypeDropdown", Model.VehicleTypes);
+                    @await Html.PartialAsync("_VehicleTypeDropdown", Model.VehicleVM);
                 </div>
 
                 @if (Model.Owners.Any())

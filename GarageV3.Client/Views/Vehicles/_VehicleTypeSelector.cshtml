@@ -13,7 +13,7 @@
 
         <option value="">-Välj fordonstyp-</option>
 
-        @foreach (var vehicleType in Model.VehicleTypes)
+        @foreach (var vehicleType in Model.VehicleVM.VehicleTypes)
         {
             <option value="@vehicleType.VType">@vehicleType.VType</option>
         }
