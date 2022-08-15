@@ -185,7 +185,7 @@ namespace GarageV3.Controllers
         [HttpPost]
         [ModelStateValidation]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(VehicleViewModel model)
+        public async Task<IActionResult> Edit(string id, VehicleViewModel model)
         {
 
             if (!ModelState.IsValid)
