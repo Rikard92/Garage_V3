@@ -151,8 +151,9 @@ namespace GarageV3.Client.Controllers
 
             _model.Owners = result;
 
-
             _model.SearchOption = string.Empty;
+
+
 
             return await Task.FromResult(View("../Search/SearchMain", _model));
         }

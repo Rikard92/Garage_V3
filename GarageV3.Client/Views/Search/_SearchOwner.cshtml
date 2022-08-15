@@ -10,8 +10,20 @@
                 <div id="reghelp" class="form-text">Skriv in exakt match eller delar av ett ord</div>
             </div>
 
+            <div class="form-check">
+                <input  asp-for="IsSort" class="form-check-input" type="checkbox" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Sortera nedåtgående
+                </label>
+            </div>
+            <div class="form-check">
+                <input asp-for="IsExactMatch" class="form-check-input" type="checkbox" id="flexCheckChecked" checked>
+                <label class="form-check-label" for="flexCheckChecked">
+                    Exakt matchning
+                </label>
+            </div>
 
-            <button type="submit" class="btn btn-primary">Sök</button>
+            <button type="submit" class="btn btn-primary mt-4">Sök</button>
         </form>
 
         @if (!string.IsNullOrWhiteSpace(Model.UserInfo))
