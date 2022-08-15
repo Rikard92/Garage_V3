@@ -7,6 +7,10 @@
 
         IOwnerTempRepository OwnerTempRepo { get; }
 
+        IOwnerRepository OwnerRepo { get; }
+
+        IMembershipRepository MembershipRepo { get; }
+
         Task<int> CompleteAsync(bool stopTracker = false);
 
     }

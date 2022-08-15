@@ -1,0 +1,62 @@
+﻿@using GarageV3.Client.Controllers
+@model MemberShipsViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<h4>Membership</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddMember">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<div class="form-group">
+                <label asp-for="MembershipCategory" class="control-label"></label>
+                <input asp-for="MembershipCategory" class="form-control" />
+                <span asp-validation-for="MembershipCategory" class="text-danger"></span>
+            </div>*@
+           <div class="form-group">
+                <label asp-for="MembershipCategory" class="control-label"></label>
+                <select asp-for="MembershipCategory" class ="form-control" asp-items="ViewBag.MembershipCategory"></select>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="MemberId" class="control-label"></label>
+                <input asp-for="MemberId" class="form-control" />
+                <span asp-validation-for="MemberId" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PersonNumber" class="control-label"></label>
+                <input asp-for="PersonNumber" class="form-control" />
+                <span asp-validation-for="PersonNumber" class="text-danger"></span>
+            </div>@*
+            <div class="form-group">
+                <label asp-for="OwnerId" class="control-label"></label>
+                <input asp-for="OwnerId" class="form-control" />
+                <span asp-validation-for="OwnerId" class="text-danger"></span>
+            </div>*@
+            @*<div class="form-group">
+                <label asp-for="OwnerId" class="control-label"></label>
+                <select asp-for="OwnerId" class ="form-control" asp-items="ViewBag.OwnerId"></select>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Regristrera" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

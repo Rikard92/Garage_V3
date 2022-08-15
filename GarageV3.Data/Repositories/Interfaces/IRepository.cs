@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using GarageV3.Core.Models;
+using System.Linq.Expressions;
 
 namespace GarageV3.Data.Repositories.Interfaces
 {

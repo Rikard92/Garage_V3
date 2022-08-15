@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GarageV3.Client.Controllers;
 using GarageV3.Core.Models;
 using GarageV3.Core.ViewModels;
 
@@ -33,6 +34,9 @@ namespace GarageV3.AutoMapper
 
             CreateMap<VehicleType, VehicleTypeViewModel>();
             CreateMap<VehicleType, VehicleTypeViewModel>().ReverseMap();
+
+            CreateMap<Membership, MemberShipsViewModel>();
+            CreateMap<Membership, MemberShipsViewModel>().ReverseMap();
 
         }
     }
