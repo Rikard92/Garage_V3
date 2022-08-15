@@ -33,5 +33,11 @@ namespace GarageV3.Core.ViewModels
 
         public string HeadLine { get; set; }
         public string SubTitle { get; set; }
+
+        public bool IsSort { get; set; }
+
+        public bool IsExactMatch { get; set; }
+
+
     }
 }
