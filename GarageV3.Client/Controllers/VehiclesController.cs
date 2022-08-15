@@ -172,7 +172,7 @@ namespace GarageV3.Controllers
             var vehicle = await GetVehicle(id);
 
             var vehicleTypes = await _mapper.ProjectTo<VehicleTypeViewModel>(_unitOfWork.VehicleTypeRepo.GetAll()).ToListAsync();
-            vehicle!.VehicleTypeVM.VehicleTypes = vehicleTypes;
+            vehicle!.VehicleTypes = vehicleTypes;
 
             if (vehicle == null) { return NotFound(); }
 
@@ -183,19 +183,12 @@ namespace GarageV3.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ModelStateValidation]
+        //[ModelStateValidation]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, VehicleViewModel model)
         {
 
-            if (!ModelState.IsValid)
-            {
-                ViewData["UserMessage"] = $"Någonting gick fel. kontrollera att obligatoriska värden är ifyllda";
-                return View();
-            }
-
-
-            if (model.VType!.Contains("välj", StringComparison.OrdinalIgnoreCase))
+            if (model.VehicleTypeId == 0)
             {
                 ViewData["UserMessage"] = "Välj ett fordon i listan";
                 return View();
@@ -208,7 +201,17 @@ namespace GarageV3.Controllers
                 return View();
             }
 
-            var _vehicle = _mapper.Map<Vehicle>(model);
+            var owner = await _unitOfWork.OwnerTempRepo.GetAsync(model.OwnerId.ToString());
+
+            var _vehicle = await GetVehicleModel(model.RegNr);
+
+            _vehicle.Owner = owner;
+            _vehicle.Brand = model.Brand;
+            _vehicle.RegNr = model.RegNr;
+            _vehicle.Wheels = model.Wheels;
+            _vehicle.Color = model.Color;
+
+
 
             _unitOfWork.VehicleRepo.Update(_vehicle);
             await _unitOfWork.CompleteAsync();

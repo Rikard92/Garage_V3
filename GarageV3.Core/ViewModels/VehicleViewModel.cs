@@ -1,6 +1,6 @@
 ﻿namespace GarageV3.Core.ViewModels
 {
-
+    using GarageV3.Core.Models;
     using System.ComponentModel.DataAnnotations;
 
 #nullable disable
@@ -33,11 +33,16 @@
         public string Brand { get; set; }
 
         [Display(Name = "Modell")]
-        public string Model { get; set; }
+        public string CarModel { get; set; }
 
 
+        public int VehicleTypeId { get; set; }
 
-        public VehicleTypeViewModel VehicleTypeVM { get; set; } = new();
+        public int OwnerId { get; set; }
+        public Owner Owner { get; set; }
+
+
+        public IEnumerable<VehicleTypeViewModel> VehicleTypes { get; set; }
 
 
         /// <summary>

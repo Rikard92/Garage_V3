@@ -17,14 +17,14 @@ namespace MKDevx.Data.Repositories
             AppDbContext.Entry(entity.Owner).State = EntityState.Unchanged;
             AppDbContext.Entry(entity.VehicleType).State = EntityState.Unchanged;
 
-            base.Add(entity);
+            AppDbContext.Add(entity);
         }
 
         public override void Update(Vehicle entity)
         {
             AppDbContext.Entry(entity.Owner).State = EntityState.Unchanged;
             AppDbContext.Entry(entity.VehicleType).State = EntityState.Unchanged;
-            Context.Update(entity);
+            AppDbContext.Update(entity);
         }
 
         public override void Remove(Vehicle entity)
@@ -32,7 +32,7 @@ namespace MKDevx.Data.Repositories
             AppDbContext.Entry(entity.Owner).State = EntityState.Unchanged;
             AppDbContext.Entry(entity.VehicleType).State = EntityState.Unchanged;
 
-            Context.Remove(entity);
+            AppDbContext.Remove(entity);
         }
 
 

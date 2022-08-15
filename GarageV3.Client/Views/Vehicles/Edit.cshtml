@@ -27,35 +27,39 @@
             @Html.AntiForgeryToken()
 
             <div class="form-group mt-4">
-                <partial name="_VehicleTypeDropdown" for="VehicleTypeVM"></partial>
+                <partial name="_VehicleTypeDropdown"></partial>
             </div>
 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="RegNr" />
+            <input hidden asp-for="OwnerId" />
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input hidden asp-for="RegNr" />
+
             <div class="form-group mt-4">
                 <label asp-for="Color" class="control-label"></label>
-                <input asp-for="Color" class="form-control" />
+                <input asp-for="Color" class="form-control"/>
                 <span asp-validation-for="Color" class="text-danger"></span>
             </div>
             <div class="form-group mt-4">
                 <label asp-for="Wheels" class="control-label"></label>
-                <input asp-for="Wheels" class="form-control" />
+                <input asp-for="Wheels" class="form-control"/>
                 <span asp-validation-for="Wheels" class="text-danger"></span>
             </div>
             <div class="form-group mt-4">
                 <label asp-for="Brand" class="control-label"></label>
-                <input asp-for="Brand" class="form-control" />
+                <input asp-for="Brand" class="form-control"/>
                 <span asp-validation-for="Brand" class="text-danger"></span>
             </div>
             <div class="form-group mt-4">
-                <label asp-for="Model" class="control-label"></label>
-                <input asp-for="Model" class="form-control" />
-                <span asp-validation-for="Model" class="text-danger"></span>
+                <label asp-for="CarModel" class="control-label"></label>
+                <input asp-for="CarModel" class="form-control"/>
+                <span asp-validation-for="CarModel" class="text-danger"></span>
             </div>
 
             <div class="form-group mt-4">
-@*                <input hidden asp-for="Id" id="id" name="Id" class="form-control" />
-                <span hidden asp-validation-for="VType" class="text-danger"></span>*@
+              <input hidden asp-for="Id" id="id" class="form-control" />
+@*                <span hidden asp-validation-for="VType" class="text-danger"></span>*@
             </div>
 
 
