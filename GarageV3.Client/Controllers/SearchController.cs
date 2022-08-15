@@ -4,6 +4,7 @@ using GarageV3.Core.ViewModels;
 using GarageV3.Data;
 using GarageV3.Data.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace GarageV3.Client.Controllers
@@ -46,13 +47,22 @@ namespace GarageV3.Client.Controllers
         public async Task<IActionResult> FindVehicleAsync(SearchViewModel model)
         {
 
-            Expression<Func<Vehicle, bool>> predicate = q =>
-                q.RegNr.ToLower().Contains(model.SearchOption.ToLower()) ||
-                q.Brand.ToLower().Contains(model.SearchOption.ToLower()) ||
-                q.Model.ToLower().Contains(model.SearchOption.ToLower()) ||
-                q.VehicleType.VType.ToLower().Contains(model.SearchOption.ToLower());
+            var result = new List<VehicleViewModel>();
 
-            var result = _mapper.ProjectTo<VehicleViewModel>(_unitOfWork.VehicleRepo.Find(predicate));
+            if (string.IsNullOrWhiteSpace(model.SearchOption))
+            {
+                result = await _mapper.ProjectTo<VehicleViewModel>(_unitOfWork.VehicleRepo.GetAll()).ToListAsync();
+            }
+            else
+            {
+                Expression<Func<Vehicle, bool>> predicate = q =>
+                    q.RegNr.ToLower().Contains(model.SearchOption.ToLower()) ||
+                    q.Brand.ToLower().Contains(model.SearchOption.ToLower()) ||
+                    q.Model.ToLower().Contains(model.SearchOption.ToLower()) ||
+                    q.VehicleType.VType.ToLower().Contains(model.SearchOption.ToLower());
+
+                result = await _mapper.ProjectTo<VehicleViewModel>(_unitOfWork.VehicleRepo.Find(predicate)).ToListAsync();
+            }
 
 
 
@@ -63,7 +73,7 @@ namespace GarageV3.Client.Controllers
             model.AltSearch = AltSearch.Vehicle;
             var _model = SetLoadOption(model, userInfo);
 
-            _model.Vehicles = result;
+            model.Vehicles = result;
 
             _model.SearchOption = string.Empty;
 
