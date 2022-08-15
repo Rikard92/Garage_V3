@@ -65,15 +65,12 @@ namespace GarageV3.Client.Controllers
             }
 
 
-
-
-
             var userInfo = result.Any() ? "" : "Inga poster funna";
 
             model.AltSearch = AltSearch.Vehicle;
             var _model = SetLoadOption(model, userInfo);
 
-            model.Vehicles = result;
+            _model.Vehicles = result;
 
             _model.SearchOption = string.Empty;
 
