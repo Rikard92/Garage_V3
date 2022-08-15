@@ -65,7 +65,7 @@ namespace GarageV3.Controllers
         [HttpGet]
         public async Task<IActionResult> ParkCar()
         {
-            var vtypes = await _unitOfWork.VehicleTypeRepo.GetAll().ToListAsync();
+            var vtypes = await _mapper.ProjectTo<VehicleTypeViewModel>(_unitOfWork.VehicleTypeRepo.GetAll()).ToListAsync();
 
             var _garages = await _unitOfWork.VehicleRepo.GetAll().ToListAsync();
 
@@ -171,8 +171,8 @@ namespace GarageV3.Controllers
 
             var vehicle = await GetVehicle(id);
 
-            var vehicleTypes = await _unitOfWork.VehicleTypeRepo.GetAll().ToListAsync();
-            vehicle!.ParkCarVM.VehicleTypes = vehicleTypes;
+            var vehicleTypes = await _mapper.ProjectTo<VehicleTypeViewModel>(_unitOfWork.VehicleTypeRepo.GetAll()).ToListAsync();
+            vehicle!.VehicleTypeVM.VehicleTypes = vehicleTypes;
 
             if (vehicle == null) { return NotFound(); }
 

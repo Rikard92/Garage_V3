@@ -6,7 +6,7 @@ namespace GarageV3.Core.ViewModels
 #nullable disable
     public class ParkCarViewModel
     {
-        public IEnumerable<VehicleType> VehicleTypes { get; set; } = new List<VehicleType>();
+        public IEnumerable<VehicleTypeViewModel> VehicleTypes { get; set; } = new List<VehicleTypeViewModel>();
 
         public VehicleType VehicleType { get; set; } = new();
         public Vehicle Vehicle { get; set; }

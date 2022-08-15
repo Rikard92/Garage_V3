@@ -37,7 +37,7 @@
 
 
 
-        public ParkCarViewModel ParkCarVM { get; set; } = new();
+        public VehicleTypeViewModel VehicleTypeVM { get; set; } = new();
 
 
         /// <summary>

@@ -12,12 +12,9 @@
 
 
 
-
 <h2 class="mt-4 mb-4">Uppdatera fordonets egenskaper</h2>
 
 <h4 class="mb-4">Registreringsnr: @Model.RegNr.ToUpper()</h4>
-
-<partial name="_VehicleTypeDropdown" for="ParkCarVM"></partial>
 
 <hr />
 
@@ -25,9 +22,13 @@
 
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" method="post">
 
             @Html.AntiForgeryToken()
+
+            <div class="form-group mt-4">
+                <partial name="_VehicleTypeDropdown" for="VehicleTypeVM"></partial>
+            </div>
 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="RegNr" />
@@ -52,13 +53,13 @@
                 <span asp-validation-for="Model" class="text-danger"></span>
             </div>
 
-            <div class="form-groupmt-4">
-                <input hidden asp-for="Id" id="id" name="Id" class="form-control" />
-                <span hidden asp-validation-for="VType" class="text-danger"></span>
+            <div class="form-group mt-4">
+@*                <input hidden asp-for="Id" id="id" name="Id" class="form-control" />
+                <span hidden asp-validation-for="VType" class="text-danger"></span>*@
             </div>
 
 
-            <div class="form-groupmt-4">
+            <div class="form-group mt-4">
                 <input hidden type="datetime" asp-for="ArrivalTime" name="ArrivalTime" class="form-control" />
             </div>
 

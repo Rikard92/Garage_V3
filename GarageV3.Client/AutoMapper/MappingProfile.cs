@@ -27,6 +27,9 @@ namespace GarageV3.AutoMapper
             CreateMap<Owner, OwnerViewModel>();
             CreateMap<Owner, OwnerViewModel>().ReverseMap();
 
+            CreateMap<VehicleType, VehicleTypeViewModel>();
+            CreateMap<VehicleType, VehicleTypeViewModel>().ReverseMap();
+
         }
     }
 }
