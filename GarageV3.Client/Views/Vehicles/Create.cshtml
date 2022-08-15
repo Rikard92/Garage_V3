@@ -10,13 +10,18 @@
    <partial name="_InfoPopup" view-data="@ViewData["UserMessage"] as ViewDataDictionary"></partial>
 }
 
-<partial name="_VehicleTypeSelector" for="@Model"></partial>
 
 
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create" id="formid">
+
+            
+            <div class="form-group mt-4">
+                <partial name="_VehicleTypeDropdown"></partial>
+            </div>
+
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group mt-2">
                 <label asp-for="RegNr" class="control-label"></label>

@@ -6,7 +6,10 @@ namespace GarageV3.Core.ViewModels
 #nullable disable
     public class ParkCarViewModel
     {
-        public IEnumerable<VehicleTypeViewModel> VehicleTypes { get; set; } = new List<VehicleTypeViewModel>();
+
+
+
+        public IEnumerable<VehicleTypeViewModel> VehicleTypes { get; set; }
 
         public VehicleType VehicleType { get; set; } = new();
         public Vehicle Vehicle { get; set; }
@@ -39,7 +42,7 @@ namespace GarageV3.Core.ViewModels
 
         [Required]
         [Display(Name = "Modell")]
-        public string Model { get; set; }
+        public string CarModel { get; set; }
 
 
         [Display(Name = "Ankomsttid")]
