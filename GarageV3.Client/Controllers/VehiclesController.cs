@@ -116,6 +116,7 @@ namespace GarageV3.Controllers
             var vehicle = _mapper.Map<Vehicle>(parkVM);
             vehicle.ArrivalTime = DateTimeHelper.GetCurrentDate();
             vehicle.Owner = _owner;
+            vehicle.Model = parkVM.CarModel;
             vehicle.VehicleType = vehicleType;
 
 
