@@ -107,7 +107,7 @@ namespace GarageV3.Controllers
             //Todo: Maybe change this with the real OwnerRepos. If time is available
             var _owner = await _unitOfWork.OwnerTempRepo.GetAsync(parkVM.Owner.Id.ToString());
 
-            var vehicleType = await _unitOfWork.VehicleTypeRepo.GetAsync(parkVM.VehicleType.Id.ToString());
+            var vehicleType = await _unitOfWork.VehicleTypeRepo.GetAsync(parkVM.VehicleTypeId.ToString());
 
             parkVM.ArrivalTime = DateTime.Now;
             parkVM.RegNr = _regNr.ToUpper().RemoveWhiteSpace();
