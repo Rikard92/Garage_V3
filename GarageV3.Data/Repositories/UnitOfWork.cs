@@ -1,4 +1,5 @@
-﻿using GarageV3.Data.Repositories.Interfaces;
+﻿using GarageV3.Data.Repositories;
+using GarageV3.Data.Repositories.Interfaces;
 using MKDevx.Data.Repositories;
 
 namespace GarageV3.Data
@@ -13,7 +14,9 @@ namespace GarageV3.Data
 
         public IOwnerTempRepository OwnerTempRepo { get; private set; }
 
+        public IOwnerRepository OwnerRepo { get; private set; }
 
+        public IMembershipRepository MembershipRepo { get; private set; }
 
         public UnitOfWork(GarageDBContext _context)
         {
@@ -22,6 +25,8 @@ namespace GarageV3.Data
             VehicleRepo = new VehicleRepository(_context);
             VehicleTypeRepo = new VehicleTypeRepository(_context);
             OwnerTempRepo = new OwnerTempRepository(_context);
+            OwnerRepo = new OwnerRepository(_context);
+            MembershipRepo = new MembershipRepository(_context);
 
         }
 

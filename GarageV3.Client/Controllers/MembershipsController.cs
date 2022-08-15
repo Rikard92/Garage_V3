@@ -32,6 +32,7 @@ namespace GarageV3.Client.Controllers
             //var garageV3ClientContext = _context.MemberShips.Include(m => m.Owner);
             //return View(await garageV3ClientContext.ToListAsync());
             var viewModel = await GetMembers().ConfigureAwait(false);
+            //var viewModel = await _unitOfWork.MembershipRepo.GetMembers().ConfigureAwait(false);
             return View(viewModel);
         }
 
@@ -55,9 +56,14 @@ namespace GarageV3.Client.Controllers
         }
 
         // GET: Memberships/Create
-        public IActionResult Create()
+        public async Task<IActionResult> CreateAsync()
         {
             //ViewData["OwnerId"] = new SelectList(_context.Set<Owner>(), "Id", "FirstName");
+
+            //var vtypes = await _unitOfWork.VehicleTypeRepo.GetAll().ToListAsync();
+
+            var memcat = await _unitOfWork.MembershipRepo.GetAll().Select(x => x.MembershipCategory).Distinct().ToListAsync();
+            ViewData["MembershipCategory"] = new SelectList(memcat);
             return View();
         }
 
@@ -66,26 +72,35 @@ namespace GarageV3.Client.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,MembershipCategory,PersonNumber,FirstName,LastName")] MemberShipsViewModel membershipInfo)
+        public async Task<IActionResult> AddMember([Bind("Id,MembershipCategory,PersonNumber,FirstName,LastName")] MemberShipsViewModel membershipInfo)
         {
+
+            var vtypes = await _unitOfWork.VehicleTypeRepo.GetAll().ToListAsync();
+
             if (ModelState.IsValid)
             {
-                Owner Owner = new Owner();
-                Owner.PersonNumber = membershipInfo.PersonNumber;
-                Owner.FirstName = membershipInfo.FirstName;
-                Owner.LastName = membershipInfo.LastName;
-                Owner.Vehicles = new List<Vehicle>();
+                Owner Owner = new Owner {
+                    PersonNumber = membershipInfo.PersonNumber,
+                    FirstName = membershipInfo.FirstName,
+                    LastName = membershipInfo.LastName,
+                    Vehicles = new List<Vehicle>()
+                };
 
-                Membership Membership = new Membership();
-                Membership.MembershipCategory = membershipInfo.MembershipCategory;
-                Membership.Owner = Owner;
+                Membership Membership = new Membership {
+                    MembershipCategory = membershipInfo.MembershipCategory,
+                    Owner = Owner
+                };
                 //Membership.OwnerId = membershipInfo.OwnerId;
 
                 Owner.Membership = Membership;
 
-                _context.Add(Owner);
-                _context.Add(Membership);
-                await _context.SaveChangesAsync();
+                //_context.Add(Owner);
+                //_context.Add(Membership);
+                //await _context.SaveChangesAsync();
+
+                _unitOfWork.OwnerRepo.Add(Owner);
+                _unitOfWork.MembershipRepo.Add(Membership);
+                await _unitOfWork.CompleteAsync();
                 return RedirectToAction(nameof(Index));
             }
 
@@ -191,6 +206,9 @@ namespace GarageV3.Client.Controllers
 
         private async Task<List<MemberShipsViewModel>> GetMembers()
         {
+            //var result01 = _unitOfWork.MembershipRepo.GetAll();
+            //return await _mapper.ProjectTo<MemberShipsViewModel>(result01).ToListAsync();
+
             return await _context.MemberShips.Select(e => new MemberShipsViewModel
             {
                 MemberId = e.Id,
