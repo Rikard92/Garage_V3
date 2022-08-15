@@ -120,6 +120,43 @@ namespace GarageV3.Client.Controllers
         }
 
 
+        [HttpPost]
+        [ActionName("FindOwner")]
+        public async Task<IActionResult> FindOwnerAsync(SearchViewModel model)
+        {
+            ModelState.Clear();
+
+            var result = new List<OwnerViewModel>();
+
+            if (string.IsNullOrWhiteSpace(model.SearchOption))
+            {
+                result = await _mapper.ProjectTo<OwnerViewModel>(_unitOfWork.OwnerRepo.GetAll()).ToListAsync();
+            }
+            else
+            {
+                Expression<Func<Owner, bool>> predicate = q =>
+                    q.FirstName.ToLower().Contains(model.SearchOption.ToLower()) ||
+                    q.LastName.ToLower().Contains(model.SearchOption.ToLower());
+
+                var test = await _unitOfWork.OwnerRepo.Find(predicate).ToListAsync();
+
+                result = await _mapper.ProjectTo<OwnerViewModel>(_unitOfWork.OwnerRepo.Find(predicate)).ToListAsync();
+            }
+
+
+            var userInfo = result.Any() ? "" : "Inga poster funna";
+
+            model.AltSearch = AltSearch.Owner;
+            var _model = SetLoadOption(model, userInfo);
+
+            _model.Owners = result;
+
+
+            _model.SearchOption = string.Empty;
+
+            return await Task.FromResult(View("../Search/SearchMain", _model));
+        }
+
 
         [HttpPost]
         [ActionName("SelectOption")]

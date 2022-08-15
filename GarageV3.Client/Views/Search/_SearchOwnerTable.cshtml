@@ -1,0 +1,61 @@
+﻿@model SearchViewModel
+
+<div class="row">
+
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+                <tr>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Owner.FirstName)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Owner.LastName)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.MemberShipVM.PersonNumber)
+                    </th>
+
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Owners)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PersonNumber)
+                        </td>
+
+                        <td>
+                            <a asp-controller="Owner" asp-action="Edit" asp-route-id="@item.Id">Ändra fordonsdetaljer</a> |
+                            <a asp-controller="Owner" asp-action="Details" asp-route-id="@item.Id">Detaljer</a> |
+                            <a asp-controller="Owner" asp-action="Delete" asp-route-id="@item.Id">Checka ut</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
