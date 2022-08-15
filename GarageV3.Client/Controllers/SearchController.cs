@@ -46,22 +46,17 @@ namespace GarageV3.Client.Controllers
         public async Task<IActionResult> FindVehicleAsync(SearchViewModel model)
         {
 
-            IQueryable<VehicleViewModel> result;
+            Expression<Func<Vehicle, bool>> predicate = q =>
+                q.RegNr.ToLower().Contains(model.SearchOption.ToLower()) ||
+                q.Brand.ToLower().Contains(model.SearchOption.ToLower()) ||
+                q.Model.ToLower().Contains(model.SearchOption.ToLower()) ||
+                q.VehicleType.VType.ToLower().Contains(model.SearchOption.ToLower());
 
-            if (string.IsNullOrWhiteSpace(model.SearchOption))
-            {
-                result = _mapper.ProjectTo<VehicleViewModel>(_unitOfWork.VehicleRepo.GetAll());
-            }
-            else
-            {
-                Expression<Func<Vehicle, bool>> predicate = q =>
-                    q.RegNr.ToLower().Contains(model.SearchOption.ToLower()) ||
-                    q.Brand.ToLower().Contains(model.SearchOption.ToLower()) ||
-                    q.Model.ToLower().Contains(model.SearchOption.ToLower()) ||
-                    q.VehicleType.VType.ToLower().Contains(model.SearchOption.ToLower());
+            var result = _mapper.ProjectTo<VehicleViewModel>(_unitOfWork.VehicleRepo.Find(predicate));
 
-                result = _mapper.ProjectTo<VehicleViewModel>(_unitOfWork.VehicleRepo.Find(predicate));
-            }
+
+
+
 
             var userInfo = result.Any() ? "" : "Inga poster funna";
 
