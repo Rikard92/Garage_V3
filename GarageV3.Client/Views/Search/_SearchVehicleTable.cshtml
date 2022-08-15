@@ -64,9 +64,9 @@
                         </td>
 
                         <td>
-                            <a asp-action="Edit" asp-route-id="@item.RegNr">Ändra fordonsdetaljer</a> |
-                            <a asp-action="Details" asp-route-id="@item.RegNr">Detaljer</a> |
-                            <a asp-action="Delete" asp-route-id="@item.RegNr">Checka ut</a>
+                            <a asp-controller="Vehicles" asp-action="Edit" asp-route-id="@item.RegNr">Ändra fordonsdetaljer</a> |
+                            <a asp-controller="Vehicles" asp-action="Details" asp-route-id="@item.RegNr">Detaljer</a> |
+                            <a asp-controller="Vehicles" asp-action="Delete" asp-route-id="@item.RegNr">Checka ut</a>
                         </td>
                     </tr>
                 }
