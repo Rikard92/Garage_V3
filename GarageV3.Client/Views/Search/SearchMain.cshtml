@@ -15,14 +15,25 @@
 
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-                <select asp-for="AltSearch">
-                    <option value="">-Välj sök alternativ-</option>
-                    <option value="@AltSearch.Vehicle">Fordon</option>
-                    <option value="@AltSearch.Owner">Ägare</option>
-                    <option value="@AltSearch.MemberShip">Medlemsskap</option>
-                </select>
 
-                <button type="submit">Skicka</button>
+                <div class="mt-2">
+                    <select class="form-select" asp-for="AltSearch">
+                        <option value="">-Välj sök alternativ-</option>
+                        <option value="@AltSearch.Vehicle">Fordon</option>
+                        <option value="@AltSearch.Owner">Ägare</option>
+                        <option value="@AltSearch.MemberShip">Medlemsskap</option>
+                    </select>
+                </div>
+
+
+
+                <button class="btn btn-md btn-primary mt-2" type="submit">Sök</button>
+
+                @if (!string.IsNullOrWhiteSpace(Model.UserInfo))
+                {
+                    <p class="text-danger">@Model.UserInfo</p>
+                }
+
 
                 <div class="mt-4">
                     <a class="fw-bold" asp-controller="Vehicles" asp-action="index">Tillbaka</a>

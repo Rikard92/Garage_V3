@@ -38,6 +38,5 @@ namespace GarageV3.Core.ViewModels
 
         public bool IsExactMatch { get; set; }
 
-
     }
 }

@@ -186,10 +186,13 @@ namespace GarageV3.Client.Controllers
                     break;
                 default:
                     _model.HeadLine = "Sök i databasen";
+                    _model.UserInfo = "Välj ett alternativ från dropdown";
                     break;
             }
 
-            _model.UserInfo = userInfo;
+
+
+            _model.UserInfo = !string.IsNullOrWhiteSpace(_model.UserInfo) ? _model.UserInfo : "";
 
             return _model;
         }
