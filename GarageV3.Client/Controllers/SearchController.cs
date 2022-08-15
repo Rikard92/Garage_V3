@@ -46,48 +46,22 @@ namespace GarageV3.Client.Controllers
         public async Task<IActionResult> FindVehicleAsync(SearchViewModel model)
         {
 
-            Expression<Func<Vehicle, bool>> predicate = q =>
-                q.RegNr.ToLower().Contains(model.Vehicle.RegNr.ToLower()) ||
-                q.Brand.ToLower().Contains(model.Vehicle.Brand) ||
-                q.Model.ToLower().Contains(model.Vehicle.Model);
+            IQueryable<VehicleViewModel> result;
 
+            if (string.IsNullOrWhiteSpace(model.SearchOption))
+            {
+                result = _mapper.ProjectTo<VehicleViewModel>(_unitOfWork.VehicleRepo.GetAll());
+            }
+            else
+            {
+                Expression<Func<Vehicle, bool>> predicate = q =>
+                    q.RegNr.ToLower().Contains(model.SearchOption.ToLower()) ||
+                    q.Brand.ToLower().Contains(model.SearchOption.ToLower()) ||
+                    q.Model.ToLower().Contains(model.SearchOption.ToLower()) ||
+                    q.VehicleType.VType.ToLower().Contains(model.SearchOption.ToLower());
 
-            //Expression<Func<Vehicle, bool>> predicate = q => q.RegNr.ToLower().Contains(model.Vehicle.RegNr);
-
-
-            var result = _mapper.ProjectTo<VehicleViewModel>(_unitOfWork.VehicleRepo.Find(predicate));
-
-            var userInfo = result.Any() ? "" : "Inga poster funna";
-
-            model.AltSearch = AltSearch.Vehicle;
-            var _model = SetLoadOption(model, userInfo);
-
-            model.Vehicles = result;
-
-
-            return await Task.FromResult(View("../Search/SearchMain", model));
-
-
-            throw new NotImplementedException();
-        }
-
-
-
-        [HttpPost]
-        [ActionName("FindVehicle")]
-        public async Task<IActionResult> FindVehicleAsync(string findTarget)
-        {
-
-            Expression<Func<Vehicle, bool>> predicate = q =>
-                q.RegNr.ToLower().Contains(findTarget.ToLower()) ||
-                q.Brand.ToLower().Contains(findTarget.ToLower()) ||
-                q.Model.ToLower().Contains(findTarget.ToLower());
-
-
-            //Expression<Func<Vehicle, bool>> predicate = q => q.RegNr.ToLower().Contains(model.Vehicle.RegNr);
-
-
-            var result = _mapper.ProjectTo<VehicleViewModel>(_unitOfWork.VehicleRepo.Find(predicate));
+                result = _mapper.ProjectTo<VehicleViewModel>(_unitOfWork.VehicleRepo.Find(predicate));
+            }
 
             var userInfo = result.Any() ? "" : "Inga poster funna";
 
@@ -102,6 +76,38 @@ namespace GarageV3.Client.Controllers
 
             throw new NotImplementedException();
         }
+
+
+
+        //[HttpPost]
+        //[ActionName("FindVehicle")]
+        //public async Task<IActionResult> FindVehicleAsync(string findTarget)
+        //{
+
+        //    Expression<Func<Vehicle, bool>> predicate = q =>
+        //        q.RegNr.ToLower().Contains(findTarget.ToLower()) ||
+        //        q.Brand.ToLower().Contains(findTarget.ToLower()) ||
+        //        q.Model.ToLower().Contains(findTarget.ToLower());
+
+
+        //    //Expression<Func<Vehicle, bool>> predicate = q => q.RegNr.ToLower().Contains(model.Vehicle.RegNr);
+
+
+        //    var result = _mapper.ProjectTo<VehicleViewModel>(_unitOfWork.VehicleRepo.Find(predicate));
+
+        //    var userInfo = result.Any() ? "" : "Inga poster funna";
+
+        //    model.AltSearch = AltSearch.Vehicle;
+        //    var _model = SetLoadOption(model, userInfo);
+
+        //    model.Vehicles = result;
+
+
+        //    return await Task.FromResult(View("../Search/SearchMain", model));
+
+
+        //    throw new NotImplementedException();
+        //}
 
 
         [HttpPost]

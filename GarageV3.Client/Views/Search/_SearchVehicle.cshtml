@@ -5,30 +5,11 @@
     <div class="col-md-6">
         <form asp-action="FindVehicle" asp-controller="Search">
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Registrering nummer</label>
-                <input asp-for="Vehicle.RegNr" type="text" class="form-control" id="regme" aria-describedby="reghelp">
+                <label for="searchoptid" class="form-label">Ange Sökkritera</label>
+                <input asp-for="SearchOption" type="text" class="form-control" id="regme" aria-describedby="reghelp">
                 <div id="reghelp" class="form-text">We'll never share your email with anyone else.</div>
             </div>
 
-            <div class="mb-3">
-                <label for="vehicletypeid" class="form-label">Fordonstyp</label>
-                <input asp-for="Vehicle.VType" type="number" class="form-control">
-            </div>
-
-            <div class="mb-3">
-                <label for="colorid" class="form-label">Färg</label>
-                <input asp-for="Vehicle.Color" type="text" class="form-control">
-            </div>
-
-            <div class="mb-3">
-                <label for="weelid" class="form-label">Antal hjul</label>
-                <input asp-for="Vehicle.Wheels" type="number" class="form-control">
-            </div>
-
-            <div class="mb-3">
-                <label for="brandid" class="form-label">Märke</label>
-                <input asp-for="Vehicle.Brand" type="text" class="form-control">
-            </div>
 
             <button type="submit" class="btn btn-primary">Sök</button>
         </form>

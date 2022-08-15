@@ -40,14 +40,16 @@ namespace MKDevx.Data.Repositories
                 {
                     return await AppDbContext!.Vehicles
                         .Include(x => x.Owner)
+                        .Include(x => x.VehicleType)
+                        .AsSplitQuery()
                         .FirstOrDefaultAsync(a => a.Id == int.Parse(id));
 
                 }
 
                 return await AppDbContext!.Vehicles
-                    .Include(x => x.Owner)
-                    .Include(x => x.VehicleType)
-                    .AsSplitQuery()
+                     .Include(x => x.Owner)
+                     .Include(x => x.VehicleType)
+                     .AsSplitQuery()
                     .FirstOrDefaultAsync(a => a.RegNr.ToLower().Contains(id.ToLower()));
 
             }
@@ -70,8 +72,7 @@ namespace MKDevx.Data.Repositories
             return AppDbContext!.Vehicles
                 .Include(v => v.Owner)
                 .Include(v => v.VehicleType)
-                .AsSplitQuery()
-                .OrderByDescending(o => o.ArrivalTime);
+                .AsSplitQuery();
         }
 
 

@@ -20,6 +20,8 @@
 
 
 
+        public string SearchOption { get; set; }
+
 
         public AltSearch AltSearch { get; set; }
 
