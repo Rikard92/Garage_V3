@@ -39,6 +39,17 @@ namespace GarageV3.Controllers
         public async Task<IActionResult> Index()
         {
             var viewModel = await GetVehicles().ConfigureAwait(false);
+
+
+            var currentStore = viewModel.Count();
+            var freeCapacity = _garageCapacity - currentStore;
+
+            var garageStoreInfo = $"Garagekapcitet : {_garageCapacity} | Upptagna platser just nu {currentStore} | Lediga platser: {freeCapacity}";
+
+            ViewBag.GarageStoreInfo = garageStoreInfo;
+
+
+
             return View(viewModel);
         }
 
