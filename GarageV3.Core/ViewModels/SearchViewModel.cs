@@ -1,4 +1,7 @@
-﻿namespace GarageV3.Core.ViewModels
+﻿using GarageV3.Client.Controllers;
+using GarageV3.Core.Models;
+
+namespace GarageV3.Core.ViewModels
 {
 
     public enum AltSearch { NONE, Vehicle, MemberShip, Owner }
@@ -12,13 +15,11 @@
 
         public IEnumerable<OwnerViewModel> Owners { get; set; }
 
+        public IEnumerable<MemberShipsViewModel> MemberShips { get; set; }
+
+        public Membership MemberShip { get; set; }
+
         public OwnerViewModel Owner { get; set; } = new();
-
-
-        //ToDo: Add MemberShipViewModel
-        //public IEnumerable<MemberShipViewModel> MemberShips { get; set; }
-
-
 
         public string SearchOption { get; set; }
 

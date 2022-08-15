@@ -79,6 +79,46 @@ namespace GarageV3.Client.Controllers
             return await Task.FromResult(View("../Search/SearchMain", _model));
         }
 
+
+
+        [HttpPost]
+        [ActionName("FindMemberShip")]
+        public async Task<IActionResult> FindMemberShipAsync(SearchViewModel model)
+        {
+            ModelState.Clear();
+
+            var result = new List<MemberShipsViewModel>();
+
+            if (string.IsNullOrWhiteSpace(model.SearchOption))
+            {
+                result = await _mapper.ProjectTo<MemberShipsViewModel>(_unitOfWork.MembershipRepo.GetAll()).ToListAsync();
+            }
+            else
+            {
+                Expression<Func<Membership, bool>> predicate = q =>
+                    q.MembershipCategory.ToLower().Contains(model.SearchOption.ToLower()) ||
+                    q.Owner.FirstName.ToLower().Contains(model.SearchOption.ToLower()) ||
+                    q.Owner.LastName.ToLower().Contains(model.SearchOption.ToLower());
+
+                result = await _mapper.ProjectTo<MemberShipsViewModel>(_unitOfWork.MembershipRepo.Find(predicate)).ToListAsync();
+            }
+
+
+            var userInfo = result.Any() ? "" : "Inga poster funna";
+
+            model.AltSearch = AltSearch.MemberShip;
+            var _model = SetLoadOption(model, userInfo);
+
+            _model.MemberShips = result;
+
+
+            _model.SearchOption = string.Empty;
+
+            return await Task.FromResult(View("../Search/SearchMain", _model));
+        }
+
+
+
         [HttpPost]
         [ActionName("SelectOption")]
         public async Task<IActionResult> SelectOptionAsync(SearchViewModel model)

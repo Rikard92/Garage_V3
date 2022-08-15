@@ -2,12 +2,7 @@
 using GarageV3.Data.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using MKDevx.Data.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GarageV3.Data.Repositories
 {
@@ -15,7 +10,7 @@ namespace GarageV3.Data.Repositories
     {
         public MembershipRepository(GarageDBContext context) : base(context)
         {
-            
+
         }
         public override void Add(Membership entity)
         {
@@ -37,7 +32,7 @@ namespace GarageV3.Data.Repositories
             var isId = int.TryParse(id, out int idd);
             try
             {
-                
+
 
                 return await AppDbContext!.MemberShips
                      .Include(x => x.Owner)
@@ -52,11 +47,11 @@ namespace GarageV3.Data.Repositories
             }
         }
 
-        //public virtual IQueryable<Membership?> Find(Expression<Func<Vehicle, bool>> predicate, bool asNotracking = true) =>
-        //  AppDbContext!.MemberShips
-        //        .Include(v => v.Owner)
-        //        .AsSplitQuery()
-        //        .Where(predicate);
+        public virtual IQueryable<Membership?> Find(Expression<Func<Membership, bool>> predicate, bool asNotracking = true) =>
+          AppDbContext!.MemberShips
+                .Include(v => v.Owner)
+                .AsSplitQuery()
+                .Where(predicate);
 
         public override IQueryable<Membership> GetAll(string sortAlt = "")
         {

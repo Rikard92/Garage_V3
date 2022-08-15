@@ -1,0 +1,60 @@
+﻿@model SearchViewModel
+
+<div class="row">
+
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+                <tr>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.MemberShip.MembershipCategory)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.MemberShip.Owner.FirstName)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.MemberShip.Owner.LastName)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.MemberShips)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MembershipCategory)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+
+
+                        <td>
+                            <a asp-controller="MemberShips" asp-action="Edit" asp-route-id="@item.MemberId">Ändra fordonsdetaljer</a> |
+                            <a asp-controller="MemberShips" asp-action="Details" asp-route-id="@item.MemberId">Detaljer</a> |
+                            <a asp-controller="MemberShips" asp-action="Delete" asp-route-id="@item.MemberId">Checka ut</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+

@@ -1,4 +1,42 @@
-﻿
-@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model SearchViewModel
+
+<div class="row">
+
+    <div class="col-md-6">
+        <form asp-action="FindMemberShip" asp-controller="Search">
+            <div class="mb-3">
+                <label for="searchoptid" class="form-label">Ange Sökkritera</label>
+                <input asp-for="SearchOption" type="text" class="form-control" id="regme" aria-describedby="reghelp">
+                <div id="reghelp" class="form-text">Skriv in exakt match eller delar av ett ord</div>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Sök</button>
+        </form>
+
+        @if (!string.IsNullOrWhiteSpace(Model.UserInfo))
+        {
+            <p class="text-danger">@Model.UserInfo</p>
+        }
+
+    </div>
+
+
+    <!-- Result from search -->
+    @if (Model.MemberShips is not null && Model.MemberShips.Any())
+    {
+        @await Html.PartialAsync("_SearchMemberShipTable")
+    }
+
+    <div class="mt-4">
+        <a class="fw-bold" asp-controller="Search" asp-action="Load">Tillbaka</a>
+    </div>
+
+</div>
+
+
+
+
+
+
+

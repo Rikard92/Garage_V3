@@ -22,5 +22,7 @@
         public int VehiclesNum { get; set; }
 
         public int OwnerId { get; set; }
+
+        public string BirthDate { get; set; }
     }
 }

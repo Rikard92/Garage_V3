@@ -35,9 +35,17 @@ namespace GarageV3.AutoMapper
             CreateMap<VehicleType, VehicleTypeViewModel>();
             CreateMap<VehicleType, VehicleTypeViewModel>().ReverseMap();
 
-            CreateMap<Membership, MemberShipsViewModel>();
-            CreateMap<Membership, MemberShipsViewModel>().ReverseMap();
 
+            //Memberships
+
+            CreateMap<Membership, MemberShipsViewModel>()
+                .ForMember(dest => dest.FirstName, from => from.MapFrom(m => m.Owner.FirstName))
+                .ForMember(dest => dest.LastName, from => from.MapFrom(m => m.Owner.LastName))
+                .ForMember(dest => dest.BirthDate, from => from.MapFrom(m => m.Owner.PersonNumber));
+
+            CreateMap<Membership, MemberShipsViewModel>()
+                .ForMember(dest => dest.FirstName, from => from.MapFrom(m => m.Owner.FirstName))
+                .ForMember(dest => dest.LastName, from => from.MapFrom(m => m.Owner.LastName)).ReverseMap();
         }
     }
 }
