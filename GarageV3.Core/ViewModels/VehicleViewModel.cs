@@ -37,6 +37,8 @@
 
 
 
+        public ParkCarViewModel ParkCarVM { get; set; } = new();
+
 
         /// <summary>
         /// HeadLine

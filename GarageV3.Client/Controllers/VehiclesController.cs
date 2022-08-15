@@ -169,7 +169,10 @@ namespace GarageV3.Controllers
                 return NotFound();
             }
 
-            var vehicle = await GetVehicleModel(id);
+            var vehicle = await GetVehicle(id);
+
+            var vehicleTypes = await _unitOfWork.VehicleTypeRepo.GetAll().ToListAsync();
+            vehicle!.ParkCarVM.VehicleTypes = vehicleTypes;
 
             if (vehicle == null) { return NotFound(); }
 
@@ -182,7 +185,7 @@ namespace GarageV3.Controllers
         [HttpPost]
         [ModelStateValidation]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("RegNr,Color,Wheels,Brand,Model,ArrivalTime,VehicleType")] Vehicle vehicle)
+        public async Task<IActionResult> Edit(VehicleViewModel model)
         {
 
             if (!ModelState.IsValid)
@@ -192,21 +195,22 @@ namespace GarageV3.Controllers
             }
 
 
-            if (vehicle.VehicleType.VType!.Contains("välj", StringComparison.OrdinalIgnoreCase))
+            if (model.VType!.Contains("välj", StringComparison.OrdinalIgnoreCase))
             {
                 ViewData["UserMessage"] = "Välj ett fordon i listan";
                 return View();
             }
 
 
-            if (id.ToUpper() != vehicle.RegNr.ToUpper())
+            if (model.Id < 0)
             {
-                ViewData["UserMessage"] = $"Registeringsnummer {id} saknas";
+                ViewData["UserMessage"] = $"Id {model.Id} är ej ett korrekt. Borde vara större än 0";
                 return View();
             }
 
+            var _vehicle = _mapper.Map<Vehicle>(model);
 
-            _unitOfWork.VehicleRepo.Update(vehicle);
+            _unitOfWork.VehicleRepo.Update(_vehicle);
             await _unitOfWork.CompleteAsync();
 
             return RedirectToAction(nameof(Index));

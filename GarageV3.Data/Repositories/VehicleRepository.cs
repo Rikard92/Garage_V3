@@ -22,11 +22,16 @@ namespace MKDevx.Data.Repositories
 
         public override void Update(Vehicle entity)
         {
+            AppDbContext.Entry(entity.Owner).State = EntityState.Unchanged;
+            AppDbContext.Entry(entity.VehicleType).State = EntityState.Unchanged;
             Context.Update(entity);
         }
 
         public override void Remove(Vehicle entity)
         {
+            AppDbContext.Entry(entity.Owner).State = EntityState.Unchanged;
+            AppDbContext.Entry(entity.VehicleType).State = EntityState.Unchanged;
+
             Context.Remove(entity);
         }
 
