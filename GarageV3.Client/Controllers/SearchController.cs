@@ -100,6 +100,8 @@ namespace GarageV3.Client.Controllers
                     q.Owner.FirstName.ToLower().Contains(model.SearchOption.ToLower()) ||
                     q.Owner.LastName.ToLower().Contains(model.SearchOption.ToLower());
 
+                var test = await _unitOfWork.MembershipRepo.Find(predicate).ToListAsync();
+
                 result = await _mapper.ProjectTo<MemberShipsViewModel>(_unitOfWork.MembershipRepo.Find(predicate)).ToListAsync();
             }
 

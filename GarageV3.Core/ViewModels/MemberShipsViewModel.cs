@@ -23,6 +23,7 @@
 
         public int OwnerId { get; set; }
 
+        [Display(Name = "Födelsedatum")]
         public string BirthDate { get; set; }
     }
 }

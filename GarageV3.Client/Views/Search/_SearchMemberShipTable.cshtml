@@ -18,6 +18,12 @@
                     <th>
                         @Html.DisplayNameFor(model => model.MemberShip.Owner.LastName)
                     </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.MemberShip.Owner.PersonNumber)
+                    </th>
+
+
                     <th></th>
                 </tr>
             </thead>
@@ -35,6 +41,10 @@
 
                         <td>
                             @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BirthDate)
                         </td>
 
 
