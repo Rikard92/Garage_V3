@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using GarageV3.Core.Models;
+using GarageV3.Data;
+using GarageV3.Data.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using GarageV3.Core.Models;
-using GarageV3.Data;
-using AutoMapper;
-using GarageV3.Data.Repositories.Interfaces;
 
 namespace GarageV3.Client.Controllers
 {
@@ -79,14 +75,16 @@ namespace GarageV3.Client.Controllers
 
             if (ModelState.IsValid)
             {
-                Owner Owner = new Owner {
+                Owner Owner = new Owner
+                {
                     PersonNumber = membershipInfo.PersonNumber,
                     FirstName = membershipInfo.FirstName,
                     LastName = membershipInfo.LastName,
                     Vehicles = new List<Vehicle>()
                 };
 
-                Membership Membership = new Membership {
+                Membership Membership = new Membership
+                {
                     MembershipCategory = membershipInfo.MembershipCategory,
                     Owner = Owner
                 };
@@ -105,7 +103,8 @@ namespace GarageV3.Client.Controllers
             }
 
             //ViewData["OwnerId"] = new SelectList(_context.Set<Owner>(), "Id", "FirstName", membership.OwnerId);
-            return View(membershipInfo);
+
+            return View("Create", membershipInfo);
         }
 
         // GET: Memberships/Edit/5
