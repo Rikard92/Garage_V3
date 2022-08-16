@@ -9,6 +9,7 @@ using GarageV3.Util.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using System.Text;
 
 namespace GarageV3.Controllers
 {
@@ -18,6 +19,7 @@ namespace GarageV3.Controllers
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
         private IUnitOfWork _unitOfWork;
+        private StringBuilder sb;
 
 
         private int _garageCapacity;
@@ -34,19 +36,32 @@ namespace GarageV3.Controllers
             _ticketBasePrice = int.Parse(_configuration["TicketBasePrice"]);
             _currency = _configuration["Currency"];
 
+            sb = new StringBuilder();
+
         }
 
         public async Task<IActionResult> Index()
         {
             var viewModel = await GetVehicles().ConfigureAwait(false);
 
+            sb.Clear();
 
             var currentStore = viewModel.Count();
             var freeCapacity = _garageCapacity - currentStore;
 
-            var garageStoreInfo = $"Garagekapcitet : {_garageCapacity} | Upptagna platser just nu {currentStore} | Lediga platser: {freeCapacity}";
 
-            ViewBag.GarageStoreInfo = garageStoreInfo;
+            var storeInfo = new string[]
+            {
+                $"Garagekapcitet: {_garageCapacity}",
+                $"Upptagna platser just nu: {currentStore}",
+                $"Lediga platser: {freeCapacity}"
+            };
+
+            //var garageStoreInfo = $"Garagekapcitet : {_garageCapacity} | Upptagna platser just nu {currentStore} | Lediga platser: {freeCapacity}";
+
+            ViewBag.GarageStoreInfo = storeInfo;
+
+
 
 
 
