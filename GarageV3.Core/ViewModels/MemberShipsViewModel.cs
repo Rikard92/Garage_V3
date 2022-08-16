@@ -24,6 +24,6 @@
         public int OwnerId { get; set; }
 
         [Display(Name = "Födelsedatum")]
-        public string BirthDate { get; set; }
+        public double BirthDate { get; set; }
     }
 }
