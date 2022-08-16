@@ -42,9 +42,12 @@
                         </td>
 
                         <td>
-                            <a asp-controller="Owner" asp-action="Edit" asp-route-id="@item.Id">Ändra ägardetaljer</a> |
+
+                            <p class="fw-bold text-primary">Ej editerbar data</p>
+
+@*                            <a asp-controller="Owner" asp-action="Edit" asp-route-id="@item.Id">Ändra ägardetaljer</a> |
                             <a asp-controller="Owner" asp-action="Details" asp-route-id="@item.Id">Deltaljer</a> |
-                            <a asp-controller="Owner" asp-action="Delete" asp-route-id="@item.Id">Avregistera ägare</a>
+                            <a asp-controller="Owner" asp-action="Delete" asp-route-id="@item.Id">Avregistera ägare</a>*@
                         </td>
                     </tr>
                 }
