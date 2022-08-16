@@ -29,11 +29,11 @@
     <a asp-action="ParkCar" asp-controller="Vehicles">Parkera fordon</a>
 </p>
 <form asp-action="IndexFilter" asp-controller="Vehicles" method="get">
-    <div class="input-group mb-2">        
+    <div class="input-group mb-2">
         <div class="input-group-append">
             <input type="text" class="form-control" name="RegNr" placeholder="Ange reg-nummer" />
         </div>
-        
+
         <div class="input-group-append">
             <button type="submit" class="btn btn-primary"><i class="fa fa-search">Sök</i></button>
         </div>
@@ -41,6 +41,9 @@
 </form>
 
 <table class="table">
+
+    <p class="fw-bold text-primary mt-2">Antal fordonsposter: @Model.Count()</p>
+
     <thead>
         <tr>
 
@@ -60,25 +63,26 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.RegNr)
-            </td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegNr)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.VType)
-            </td>
-            
-            <td>
-                @Html.DisplayFor(modelItem => item.ArrivalTime)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.RegNr">Ändra fordonsdetaljer</a> |
-                <a asp-action="Details" asp-route-id="@item.RegNr">Detaljer</a> |
-                <a asp-action="Delete" asp-route-id="@item.RegNr">Checka ut</a>
-            </td>
-        </tr>
-}
+                <td>
+                    @Html.DisplayFor(modelItem => item.VType)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArrivalTime)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.RegNr">Ändra fordonsdetaljer</a> |
+                    <a asp-action="Details" asp-route-id="@item.RegNr">Detaljer</a> |
+                    <a asp-action="Delete" asp-route-id="@item.RegNr">Checka ut</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
