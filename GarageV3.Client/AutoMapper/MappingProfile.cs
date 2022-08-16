@@ -41,12 +41,15 @@ namespace GarageV3.AutoMapper
             CreateMap<Membership, MemberShipsViewModel>()
                 .ForMember(dest => dest.FirstName, from => from.MapFrom(m => m.Owner.FirstName))
                 .ForMember(dest => dest.LastName, from => from.MapFrom(m => m.Owner.LastName))
-                .ForMember(dest => dest.BirthDate, from => from.MapFrom(m => m.Owner.PersonNumber));
+                .ForMember(dest => dest.BirthDate, from => from.MapFrom(m => m.Owner.PersonNumber))
+                .ForMember(dest => dest.MemberId, from => from.MapFrom(m => m.Owner.Id));
 
             CreateMap<Membership, MemberShipsViewModel>()
                 .ForMember(dest => dest.FirstName, from => from.MapFrom(m => m.Owner.FirstName))
                 .ForMember(dest => dest.LastName, from => from.MapFrom(m => m.Owner.LastName))
-                .ForMember(dest => dest.BirthDate, from => from.MapFrom(m => m.Owner.PersonNumber)).ReverseMap();
+                .ForMember(dest => dest.BirthDate, from => from.MapFrom(m => m.Owner.PersonNumber))
+                .ForMember(dest => dest.MemberId, from => from.MapFrom(m => m.Owner.Id))
+                .ReverseMap();
 
         }
     }
