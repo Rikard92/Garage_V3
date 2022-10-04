@@ -12,7 +12,19 @@
     <h4>Fordon</h4>
     <hr />
     <dl class="row">
+         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Owner.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Owner.FirstName)
+        </dd>
 
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Owner.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Owner.LastName)
+        </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.RegNr)
         </dt>
